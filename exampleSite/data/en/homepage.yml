@@ -1,0 +1,282 @@
+########################## hero area ##########################
+hero:
+  title : "I'm Somrat Sorkar"
+
+  # animated text loop
+  occupations:
+    - "Web Developer"
+    - "Graphic Designer"
+    - "Database Manager"
+
+  # slider background image loop
+  slider_image:
+    - "images/slider/slider-1.jpg"
+    - "images/slider/slider-2.jpg"
+    - "images/slider/slider-3.jpg"
+
+  # button
+  button:
+    enable : true
+    label : "HIRE ME"
+    link : "#contact"
+
+
+####################### Full screen navigation #####################
+fullscreen_nav:
+  enable : true
+  bg_image : "images/backgrounds/header-nav.jpg"
+  first_name : "MacGyver"
+  last_name : "SOMRAT"
+  
+
+########################### About ##################################
+about:
+  enable : true
+  image : "images/backgrounds/about-me.jpg"
+  title : "KNOW MORE <br> ABOUT ME"
+  content : "It's Somrat, Professional Web Developer. I love to write code, it's my passoin. I am here to help you, i am here to design your web page. i can help you to describe yourself in the best way.<br>No matter how difficult your web page is, i will find an easy way and complete your work anyway. Stay connect with me............😊"
+  # button
+  button:
+    enable : true
+    label : "DOWNLOAD MY CV"
+    link : "#" # you can put your cv in static folder and give the path here.
+
+###########################3 Experience ##############################
+experience:
+  enable : true
+  title : "EXPERIENCE"
+  experience_list:
+    # experience item loop
+    - name : "Web Developer"
+      company : "Fiverr.com"
+      duration : "2016-2018"
+      content : "I work with HTML, CSS, and Javascript to create websites and web applications like Personal, Business, Blog, E-comerches etc."
+      
+    # experience item loop
+    - name : "Graphic Designer"
+      company : "Fiverr.com"
+      duration : "2015-2018"
+      content : "Graphic design is art with a purpose. I love illustration, so logo desing is my favorite work. But i can do many things with graphics."
+      
+    # experience item loop
+    - name : "Database Manager"
+      company : "Polytechnic"
+      duration : "2014-2018"
+      content : "Database management is among the fundamental processes in the software field of computing. I know MS Access very well."
+
+
+############################### Skill #################################
+skill:
+  enable : true
+  title : "SKILL"
+  skill_list:
+    # skill item loop
+    - name : "Web Development"
+      parcentage : "98%"
+      
+    # skill item loop
+    - name : "Graphic Design"
+      parcentage : "85%"
+      
+    # skill item loop
+    - name : "Database Management"
+      parcentage : "90%"
+      
+    # skill item loop
+    - name : "Wordpress"
+      parcentage : "70%"
+
+
+################################### Service ##############################3
+service:
+  enable : true
+  title : "SERVICES"
+  service_list:
+    # service item loop
+    - name : "Web Development"
+      image : "images/icons/web-development.png"
+      
+    # service item loop
+    - name : "Graphic Design"
+      image : "images/icons/graphic-design.png"
+      
+    # service item loop
+    - name : "Database Management"
+      image : "images/icons/dbms.png"
+      
+    # service item loop
+    - name : "Software Development"
+      image : "images/icons/software-development.png"
+      
+    # service item loop
+    - name : "Digital Marketing"
+      image : "images/icons/marketing.png"
+      
+    # service item loop
+    - name : "Mobile App Development"
+      image : "images/icons/mobile-app.png"
+
+
+############################## call to action #########################
+call_to_action:
+  enable : true
+  bg_image : "images/backgrounds/need-service.jpg"
+  title : "NEED A SERVICE?"
+  button:
+    enable : true
+    label : "SAY HELLO!"
+    link : "#contact"
+
+
+############################# portfolio ################################
+portfolio:
+  enable : true
+  title : "PORTFOLIO"
+  portfolio_list:
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item1.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item2.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item3.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item4.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item5.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item6.jpg"
+      date : "Feb 2018"
+      category : "Web Development"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item7.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item8.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item9.jpg"
+      date : "Feb 2018"
+      category : "Database"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item10.jpg"
+      date : "Feb 2018"
+      category : "Database"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item11.jpg"
+      date : "Feb 2018"
+      category : "Database"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item12.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item13.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item14.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+      
+    # portfolio item loop
+    - name : "Project <br> Title"
+      image : "images/portfolio/item15.jpg"
+      date : "Feb 2018"
+      category : "Graphics"
+
+
+################################# Testimonial #########################33
+testimonial:
+  enable : true
+  title : "TESTIMONIALS"
+  testimonial_slider:
+    # slider item loop
+    - name : "Micheal Clark"
+      image : "images/clients/client1.jpg"
+      designation : "CEO, RANDOM COMPANY"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ad,
+                omnis totam iusto quia? Excepturi itaque quaerat, quia unde delectus rem error dignissimos in iusto."
+                
+    # slider item loop
+    - name : "Peter Parker"
+      image : "images/clients/client2.jpg"
+      designation : "CEO, RANDOM COMPANY"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ad,
+                omnis totam iusto quia? Excepturi itaque quaerat, quia unde delectus rem error dignissimos in iusto."
+                
+    # slider item loop
+    - name : "Jessica Jones"
+      image : "images/clients/client3.jpg"
+      designation : "CEO, RANDOM COMPANY"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ad,
+                omnis totam iusto quia? Excepturi itaque quaerat, quia unde delectus rem error dignissimos in iusto."
+
+
+######################### funfacts #############################3
+funfacts:
+  enable : true
+  funfacts_list:
+    # funfacts item loop
+    - name : "HANDS TO WORK"
+      image : "images/icons/works.png"
+      count : "100"
+      
+    # funfacts item loop
+    - name : "HAPPY CLIENT"
+      image : "images/icons/happy.png"
+      count : "200"
+      
+    # funfacts item loop
+    - name : "FINISHED PROJECT"
+      image : "images/icons/project.png"
+      count : "250"
+      
+    # funfacts item loop
+    - name : "CUPS OF COFFEE"
+      image : "images/icons/coffee.png"
+      count : "150"
+
+
+############################## contact ###########################
+contact:
+  enable : true
+  title : "SAY HELLO!"
