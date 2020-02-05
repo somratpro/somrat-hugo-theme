@@ -437,8 +437,7 @@ input:checked + label span:last-child {
 .last-name {
   font-size: 100px;
   font-weight: 600;
-  line-height: 0;
-  margin-top: 40px;
+  line-height: 1;
   margin-bottom: 42px;
 }
 

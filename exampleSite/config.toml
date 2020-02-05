@@ -84,7 +84,7 @@ logo_light = "images/logo.png"
 logo_dark = "images/logo-dark.png"
 # Meta data
 description = "This is meta description"
-author = "Themefisher"
+author = "somrat"
 # contact form action
 contact_form_action = "" # contact form works with https://formspree.io
 # Google Analitycs
