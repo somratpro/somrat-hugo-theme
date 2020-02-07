@@ -1,6 +1,11 @@
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range .Site.Params.plugins.js}}
 <script src="{{ .link | absURL }}"></script>
+{{ if in .link "plugins/snap-scroll.min.js" }}
+<script>
+  $("#menu").SnapScroll();
+</script>
+{{ end }}
 {{ end }}
 
 {{ "<!-- Main Script -->" | safeHTML }}
