@@ -42,6 +42,8 @@ link = "plugins/filterizr/jquery.filterizr.min.js"
 link = "plugins/magnific-popup/jquery.magnific-popup.min.js"
 [[params.plugins.js]]
 link = "plugins/owl-carousel/owl.carousel.min.js"
+[[params.plugins.js]]
+link = "plugins/snap-scroll.min.js"
 
 
 ############################## navigation ###############################
