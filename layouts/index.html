@@ -97,11 +97,32 @@
   <nav>
     <!-- desktop-menu -->
     <div class="menu-container">
-      <ul class="desktop-menu list-inline" id="desktop-menu">
+      <ul class="desktop-menu list-inline mb-0" id="desktop-menu">
         {{ range .Site.Menus.main }}
         <li class="menu-item hvr-underline-from-left 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
+      <!-- Language List -->
+      {{- if .Site.IsMultiLingual }}
+      <select id="select-language" onchange="location = this.value;">
+        {{ $siteLanguages := .Site.Languages}}
+        {{ $pageLang := .Page.Lang}}
+        {{ range .Page.AllTranslations }}
+        {{ $translation := .}}
+        {{ range $siteLanguages }}
+        {{ if eq $translation.Lang .Lang }}
+        {{ $selected := false }}
+        {{ if eq $pageLang .Lang}}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+        </option>
+        {{ else }}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </select>
+      {{ end }}
       <!-- /desktop-menu -->
 
       <!-- mobile-menu -->
@@ -123,6 +144,27 @@
               <li class="hvr-shutter-out-vertical mobile-menu-item 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
               {{ end }}
             </ul>
+            <!-- Language List -->
+            {{- if .Site.IsMultiLingual }}
+            <select class="ml-4" id="select-language" onchange="location = this.value;">
+              {{ $siteLanguages := .Site.Languages}}
+              {{ $pageLang := .Page.Lang}}
+              {{ range .Page.AllTranslations }}
+              {{ $translation := .}}
+              {{ range $siteLanguages }}
+              {{ if eq $translation.Lang .Lang }}
+              {{ $selected := false }}
+              {{ if eq $pageLang .Lang}}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+              </option>
+              {{ else }}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+              {{ end }}
+              {{ end }}
+              {{ end }}
+              {{ end }}
+            </select>
+            {{ end }}
             <ul class="mobile-menu-icons list-inline">
               {{ range .Site.Params.social }}
               <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
@@ -178,7 +220,7 @@
               <h4>{{ .name | markdownify }}</h4>
               {{ with .company }} <span>{{ . | markdownify }}</span> {{ end }}
               {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .duration }} <p>{{ . | markdownify}}</p> {{ end }}
+              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
             </div>
           </li>
           {{ end }}
