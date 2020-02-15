@@ -1,13 +1,52 @@
-######################## default configuration ####################
-baseURL = "https://examplesite.com"
-title = "Somrat | Hugo Portfolio Template"
+baseURL = "https://musing-neumann-8fe5ce.netlify.com"
+disableLanguages = []
 theme = "somrat"
-# disable language
-disableLanguages = [] # desable language from here
-
-############################# Plugins ##############################
-
-# CSS Plugins
+title = "Somrat | Hugo Portfolio Template"
+[Languages.en]
+contentDir = "content/english"
+copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
+home = "Home"
+languageCode = "en-us"
+languageName = "En"
+weight = 1
+[Languages.fr]
+contentDir = "content/french"
+copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
+home = "Accueil"
+languageCode = "fr-fr"
+languageName = "Fr"
+weight = 2
+[[menu.main]]
+URL = "#home"
+name = "Home"
+weight = 1
+[[menu.main]]
+URL = "#about"
+name = "About me"
+weight = 2
+[[menu.main]]
+URL = "#service"
+name = "Service"
+weight = 3
+[[menu.main]]
+URL = "#portfolio"
+name = "Portfolio"
+weight = 4
+[[menu.main]]
+URL = "#testimonial"
+name = "Testimonial"
+weight = 5
+[[menu.main]]
+URL = "#contact"
+name = "Contact"
+weight = 6
+[params]
+author = "somrat"
+contact_form_action = ""
+description = "This is meta description"
+google_analitycs_id = ""
+logo_dark = "images/logo-dark.png"
+logo_light = "images/logo.png"
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
@@ -24,8 +63,6 @@ link = "plugins/owl-carousel/owl.theme.default.min.css"
 link = "plugins/text-animation/text-animation.css"
 [[params.plugins.css]]
 link = "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap"
-
-# JS Plugins
 [[params.plugins.js]]
 link = "plugins/jQuery/jquery.min.js"
 [[params.plugins.js]]
@@ -42,98 +79,21 @@ link = "plugins/filterizr/jquery.filterizr.min.js"
 link = "plugins/magnific-popup/jquery.magnific-popup.min.js"
 [[params.plugins.js]]
 link = "plugins/owl-carousel/owl.carousel.min.js"
-
-
-############################## navigation ###############################
-
-# main menu
-[[menu.main]]
-name = "Home"
-URL = "#home"
-weight = 1
-
-[[menu.main]]
-name = "About me"
-URL = "#about"
-weight = 2
-
-[[menu.main]]
-name = "Service"
-URL = "#service"
-weight = 3
-
-[[menu.main]]
-name = "Portfolio"
-URL = "#portfolio"
-weight = 4
-
-[[menu.main]]
-name = "Testimonial"
-URL = "#testimonial"
-weight = 5
-
-[[menu.main]]
-name = "Contact"
-URL = "#contact"
-weight = 6
-
-
-#################### default parameters ################################
-[params]
-logo_light = "images/logo.png"
-logo_dark = "images/logo-dark.png"
-# Meta data
-description = "This is meta description"
-author = "somrat"
-# contact form action
-contact_form_action = "" # contact form works with https://formspree.io
-# Google Analitycs
-google_analitycs_id = "" # your id
-
-# Preloader
 [params.preloader]
 enable = true
-preloader = "images/preloader.gif" # use jpg, png, svg or gif format.
-  
-############################# social site ########################
+preloader = "images/preloader.gif"
 [[params.social]]
-icon = "fa-facebook-f" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+icon = "fa-facebook-f"
 link = "https://www.facebook.com/somrat.mac"
-
 [[params.social]]
-icon = "fa-twitter" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+icon = "fa-twitter"
 link = "https://twitter.com/somrat_37"
-
 [[params.social]]
-icon = "fa-instagram" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+icon = "fa-instagram"
 link = "https://www.instagram.com/somrat_sorkar/"
-
 [[params.social]]
-icon = "fa-github" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+icon = "fa-github"
 link = "https://github.com/Somrat37"
-
 [[params.social]]
-icon = "fa-linkedin" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+icon = "fa-linkedin"
 link = "https://www.linkedin.com/in/somrat-sorkar-872581158/"
-
-
-################################### English language #####################################
-[Languages.en]
-languageName = "En"
-languageCode = "en-us"
-contentDir = "content/english"
-weight = 1
-home = "Home"
-# copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
-
-
-################################### French language #####################################
-[Languages.fr]
-languageName = "Fr"
-languageCode = "fr-fr"
-contentDir = "content/french"
-weight = 2
-home = "Accueil"
-# copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
