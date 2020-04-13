@@ -155,29 +155,43 @@
 
 	/*--------------------------------
 	Start Menu
-		----------------------------------*/
+	----------------------------------*/
 	// Highlighting Menu on Scroll Through Sections
 	$(window).on('scroll', function () {
+        var counter = 0;
 		$('section').each(function () {
-			if ($(window).scrollTop() + 50 >= $(this).offset().top) {
-				var id = $(this).attr('id');
+			if ($(window).scrollTop() + 80 >= $(this).offset().top) {
 				$('.menu-item').removeClass('active');
-				$(".menu-item." + id).addClass("active");
+				$(".menu-item." + counter).addClass("active");
 				$(".mobile-menu-item").removeClass("active");
-				$(".mobile-menu-item." + id).addClass("active");
+				$(".mobile-menu-item." + counter).addClass("active");
 			}
+            ++counter;
 		});
 	});
+
+	function toggleLogoImg(id) {
+    	var img = document.getElementById(id).src;
+        if (img.indexOf('dark.png')!=-1) {
+            document.getElementById(id).src  = "https://www.qonsulter.de/images/logo-light.png";
+        }
+         else {
+           document.getElementById(id).src = "https://www.qonsulter.de/images/logo-dark.png";
+       }
+
+    }
 
 	// Styling Menu on Scroll
 	$('.about-me').waypoint({
 		handler: function (direction) {
 			// Fixing Menu after leaving Header Section
-			$(".menu").toggleClass("menu-fix");
+			//$(".menu").toggleClass("menu-fix");
 			// Changing Menu background after leaving Header Section
 			$(".menu-container").toggleClass("menu-normal");
 			$(".menu-item").toggleClass("menu-item-transparent");
 			$(".desktop-menu .hvr-underline-from-left").toggleClass("dark");
+			// Toggle Logo
+			toggleLogoImg('desktop-logo');
 			// Toggling Mobile Menu Visibility
 			$(".mobile-menu").toggleClass("mobile-menu-fix");
 			// Auto-Collapsing Mobile Menu When Left Open
@@ -188,14 +202,14 @@
 		}
 	});
 
-	// Toggle Mobile Menu
+    // Toggle Mobile Menu
 	$('.mobile-menu a').on("click", function () {
 		$(".menu-link").toggleClass("active");
 		$(".menu-slider").slideToggle(500);
 	});
 	/*--------------------------------
 			 End Menu
-		----------------------------------*/
+	----------------------------------*/
 
 	/*--------------------------------
 			Start About Me
@@ -225,39 +239,42 @@
 			 Start Portfolio
 	----------------------------------*/
 	// Initialize filterizr Plugin
-	var filterizd = $('.filtr-container').filterizr();
+    if ( document.getElementById('.filtr-container') ) {
+    	var filterizd = $('.filtr-container').filterizr();
 
-	// Styling of Filter Controls
-	$(".portfolio-navigation li").on("click", function () {
-		$(".portfolio-navigation li").removeClass("active");
-		$(this).addClass("active");
-	});
+	    // Styling of Filter Controls
+    	$(".portfolio-navigation li").on("click", function () {
+    		$(".portfolio-navigation li").removeClass("active");
+	    	$(this).addClass("active");
+    	});
 
-	// Initialize MagnificPopup Plugin
-	$('.filtr-container').magnificPopup({
-		type: 'image',
-		delegate: 'a',
-		gallery: {
-			enabled: true
-		},
-		zoom: {
-			enabled: true,
-			duration: 300,
-			easing: 'ease-in-out'
-		}
-	});
+    	// Initialize MagnificPopup Plugin
+    	$('.filtr-container').magnificPopup({
+	    	type: 'image',
+		    delegate: 'a',
+    		gallery: {
+	    		enabled: true
+    		},
+	    	zoom: {
+		    	enabled: true,
+    			duration: 300,
+	    		easing: 'ease-in-out'
+    		}
+	    });
 
-	// Galley Shuffle When Scrolled Down
-	$('.services').waypoint({
-		handler: function (direction) {
-			if (direction == "down") {
-				filterizd.filterizr('shuffle');
-			}
-		},
-		offset: "bottom-in-view"
-	});
+    	// Galley Shuffle When Scrolled Down
+	    $('.services').waypoint({
+    		handler: function (direction) {
+	    		if (direction == "down") {
+		    		filterizd.filterizr('shuffle');
+			    }
+    		},
+	    	offset: "bottom-in-view"
+    	});
 
 	// load more button
+
+    }
 
 	/*--------------------------------
 			 End Portfolio
@@ -272,7 +289,7 @@
 		loop: true,
 		dots: true,
 		autoplay: true,
-		autoplayTimeout: 3000
+		autoplayTimeout: 5000
 	});
 	/*--------------------------------
 			End Testimonials
@@ -284,7 +301,7 @@
 	// Code for Opera Mini
 	var vh = $(window).height();
 	if (navigator.userAgent.indexOf('Opera Mini') != -1) {
-		// Setting Fun Facts Value Immediately 
+		// Setting Fun Facts Value Immediately
 		work.start();
 		happyClient.start();
 		projects.start();
@@ -314,7 +331,7 @@
 			"display": "table",
 			"margin": "auto"
 		});
-		// Setting Fun Facts Value Immediately 
+		// Setting Fun Facts Value Immediately
 		work.start();
 		happyClient.start();
 		projects.start();

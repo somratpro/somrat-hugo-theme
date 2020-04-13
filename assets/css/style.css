@@ -6,6 +6,10 @@ html {
   height: 100%;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 * {
   outline: none;
 }
@@ -605,7 +609,7 @@ input:checked + label span:last-child {
   left: 0;
   right: 0;
   height: 55px;
-  background: #333;
+  /*background: #333;*/
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -626,7 +630,8 @@ input:checked + label span:last-child {
 }
 
 .desktop-menu-logo img {
-  height: 42px;
+  height: 50px;
+  margin-left: 20px;
 }
 
 .desktop-menu-logo {
@@ -638,7 +643,7 @@ input:checked + label span:last-child {
   -ms-flex-align: center;
   align-items: center;
   position: absolute;
-  left: 5px;
+  left: 1px;
 }
 
 .menu-item {
@@ -685,6 +690,7 @@ input:checked + label span:last-child {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  margin-left: 150px;
 }
 
 .menu-item a {
@@ -718,7 +724,7 @@ input:checked + label span:last-child {
 }
 
 .mobile-menu-logo img {
-  height: 55px;
+  height: 50px;
 }
 
 .mobile-menu-logo {
@@ -895,7 +901,11 @@ input:checked + label span:last-child {
 }
 
 .about-me-images img {
-  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width:  70%;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
@@ -909,7 +919,7 @@ input:checked + label span:last-child {
 }
 
 .about-me-images img:hover {
-  width: 100%;
+  width: 70%;
   -webkit-filter: grayscale(0%);
   -moz-filter: grayscale(0%);
   -ms-filter: grayscale(0%);
@@ -1536,12 +1546,13 @@ ul.experience-chart h4 {
 .contact {
   background: #313131;
   /* Fallback Background */
-  background-image: url("../images/backgrounds/contact-us-bg.jpg");
+  background-image: url("../images/backgrounds/contact-us-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: relative;
+  margin-top: 20px;
 }
 
 .contact:after {
@@ -1704,6 +1715,10 @@ textarea.form-control::-webkit-input-placeholder,
   left: 0;
   right: 0;
   text-align: center;
+  color: #fff;
+}
+
+.credit a {
   color: #fff;
 }
 
@@ -1932,7 +1947,7 @@ textarea.form-control::-webkit-input-placeholder,
 @media (max-width: 991px) {
   .desktop-menu {
     width: 95%;
-    margin-left: 10px;
+    margin-left: 100px;
   }
 }
 
