@@ -859,7 +859,7 @@ input:checked + label span:last-child {
 
 .services {
   background: #fff;
-  padding: 70px 0px;
+  padding: 125px 0px 70px 0px;
 }
 
 .services-heading {
@@ -1001,7 +1001,7 @@ input:checked + label span:last-child {
 
 .about-me {
   background: #fff;
-  padding: 125px 0px 70px 0px;
+  padding: 70px 0px;
 }
 
 .about-me-text h1 {
