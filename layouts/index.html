@@ -186,6 +186,66 @@
     =============================== -->
 
 <!-- =============================
+      Start Services
+    =============================== -->
+<section class="services" id="service">
+  {{ if $data.homepage.service.enable }}
+  {{ with $data.homepage.service }}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 mx-auto col-sm-12">
+        <div class="wow fadeInUp" data-wow-duration="1.5s">
+          <div class="services-heading">
+            <div class="bar"></div>
+            <h1>{{ .title }}</h1>
+            <p style="margin-bottom:50px">{{ .main_description | markdownify }}</p>
+          </div>
+
+          <div class="row">
+            {{ range .service_list }}
+            <!--<div class="col-lg-4 col-sm-4 col-12 services-icon">
+              <div class="service-img">
+                <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+              <div class="service-label">{{ .name | markdownify }}</div>
+              </div>
+              <div class="service-description">{{ .description | markdownify }}</div>
+            </div>-->
+            <div class="col-lg-3 col-sm-3">
+                <div class="service-label">
+                    <img class="service-img img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+                    <h4 style="margin-top:10px">{{ .name | markdownify }}</h4>
+                </div>
+                <p class="service-description">{{ .description | markdownify }}</p>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+
+  {{ if $data.homepage.call_to_action.enable }}
+  {{ with $data.homepage.call_to_action }}
+  <div class="need-service wow fadeInUp" data-wow-duration="1.5s"
+    style="background-image: url('{{ .bg_image | absURL }}');">
+    <h1>{{ .title | markdownify }}</h1>
+    {{ with .content }} <p class="text-white">{{ . | markdownify }}</p> {{ end }}
+    {{ if .button.enable }}
+    {{ with .button }}
+    <a href="{{ .link }}">{{ .label }}</a>
+    {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+</section>
+<!-- =============================
+       End Services
+    =============================== -->
+
+<!-- =============================
        Start About Me
     =============================== -->
 <section class="about-me" id="about">
@@ -262,26 +322,26 @@
     =============================== -->
 
 <!-- =============================
-      Start Services
+      Start Certification
     =============================== -->
-<section class="services" id="service">
-  {{ if $data.homepage.service.enable }}
-  {{ with $data.homepage.service }}
+<section class="certifications" id="certification">
+  {{ if $data.homepage.certification.enable }}
+  {{ with $data.homepage.certification }}
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto col-sm-10">
         <div class="wow fadeInUp" data-wow-duration="1.5s">
-          <div class="services-heading">
+          <div class="certifications-heading">
             <div class="bar"></div>
             <h1>{{ .title }}</h1>
           </div>
           <div class="row">
-            {{ range .service_list }}
-            <div class="col-lg-4 col-sm-4 col-12 services-icon">
-              <div class="service-img">
+            {{ range .certification_list }}
+            <div class="col-lg-4 col-sm-4 col-12 certifications-icon">
+              <div class="certification-img">
                 <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
               </div>
-              <div class="service-label">{{ .name | markdownify }}</div>
+              <div class="certification-label">{{ .name | markdownify }}</div>
             </div>
             {{ end }}
           </div>
@@ -292,23 +352,9 @@
   {{ end }}
   {{ end }}
 
-  {{ if $data.homepage.call_to_action.enable }}
-  {{ with $data.homepage.call_to_action }}
-  <div class="need-service wow fadeInUp" data-wow-duration="1.5s"
-    style="background-image: url('{{ .bg_image | absURL }}');">
-    <h1>{{ .title | markdownify }}</h1>
-    {{ with .content }} <p class="text-white">{{ . | markdownify }}</p> {{ end }}
-    {{ if .button.enable }}
-    {{ with .button }}
-    <a href="{{ .link }}">{{ .label }}</a>
-    {{ end }}
-    {{ end }}
-  </div>
-  {{ end }}
-  {{ end }}
 </section>
 <!-- =============================
-       End Services
+       End Certifications
     =============================== -->
 
 <!-- =============================

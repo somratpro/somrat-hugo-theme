@@ -182,7 +182,7 @@
     }
 
 	// Styling Menu on Scroll
-	$('.about-me').waypoint({
+	$('.services').waypoint({
 		handler: function (direction) {
 			// Fixing Menu after leaving Header Section
 			//$(".menu").toggleClass("menu-fix");
