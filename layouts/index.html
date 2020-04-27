@@ -337,11 +337,12 @@
           </div>
           <div class="row">
             {{ range .certification_list }}
-            <div class="col-lg-4 col-sm-4 col-12 certifications-icon">
-              <div class="certification-img">
-                <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+            <div class="col-lg-3 col-sm-3 col-12">
+              <div class="certification-label">
+                <img class="certification-img img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+                <h4 style="margin-top:10px">{{ .name | markdownify }}</h4>
               </div>
-              <div class="certification-label">{{ .name | markdownify }}</div>
+              <!--<div class="certification-label">{{ .name | markdownify }}</div>-->
             </div>
             {{ end }}
           </div>

@@ -1268,6 +1268,10 @@ ul.experience-chart h4 {
 .certification-img {
   width: 100px;
   margin: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
 }
 
 .certifications-icon img {
@@ -1275,14 +1279,22 @@ ul.experience-chart h4 {
 }
 
 .certification-label {
-  position: absolute;
   left: 0;
   right: 0;
-  top: 100px;
   text-align: center;
   font-weight: 700;
   letter-spacing: -0.5px;
   font-size: 19px;
+}
+
+.certifications h4 {
+  font-size: 19px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #4d4d4d;
 }
 
 /*--------------------------------
