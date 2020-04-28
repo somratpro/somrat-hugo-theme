@@ -864,6 +864,7 @@ input:checked + label span:last-child {
 
 .services-heading {
   position: relative;
+  margin-bottom: 50px;
 }
 
 .services-heading h1 {
