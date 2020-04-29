@@ -1726,6 +1726,7 @@ textarea.form-control::-webkit-input-placeholder,
 }
 
 .hvr-icon-push:before {
+  font-family: "Font Awesome 5 Free";
   content: "\f1d8";
   right: 19px;
 }
