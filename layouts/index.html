@@ -194,7 +194,7 @@
           <p>{{ .content | markdownify | emojify }}</p>
           {{ if .button.enable }}
           {{ with .button }}
-          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang"> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
+          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang" {{ if .download }}download{{ if .filename }}="{{ .filename }}" {{ end }} {{ end }}> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
           {{ end }}
           {{ end }}
         </div>
