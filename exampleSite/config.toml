@@ -3,7 +3,7 @@ baseURL = "https://examplesite.com"
 title = "Somrat | Hugo Portfolio Template"
 theme = "somrat"
 # disable language
-disableLanguages = [] # desable language from here
+disableLanguages = [] # disable language from here
 
 ############################# Plugins ##############################
 
@@ -87,8 +87,8 @@ description = "This is meta description"
 author = "somrat"
 # contact form action
 contact_form_action = "" # contact form works with https://formspree.io
-# Google Analitycs
-google_analitycs_id = "" # your id
+# Google analytics
+google_analytics_id = "" # your id
 
 # Preloader
 [params.preloader]

@@ -34,7 +34,7 @@ about:
   enable : true
   image : "images/backgrounds/portrait.jpg"
   title : "KNOW MORE <br> ABOUT ME"
-  content : "It's Somrat, Professional Web Developer. I love to write code, it's my passoin. I am here to help you, i am here to design your web page. i can help you to describe yourself in the best way.<br>No matter how difficult your web page is, i will find an easy way and complete your work anyway. Stay connect with me............😊"
+  content : "It's Somrat, Professional Web Developer. I love to write code, it's my passion. I am here to help you, i am here to design your web page. i can help you to describe yourself in the best way.<br>No matter how difficult your web page is, i will find an easy way and complete your work anyway. Stay connect with me............😊"
   # button
   button:
     enable : true
@@ -50,7 +50,7 @@ experience:
     - name : "Web Developer"
       company : "Fiverr.com"
       duration : "2016-2018"
-      content : "I work with HTML, CSS, and Javascript to create websites and web applications like Personal, Business, Blog, E-comerches etc."
+      content : "I work with HTML, CSS, and Javascript to create websites and web applications like Personal, Business, Blog, E-commerce etc."
       
     # experience item loop
     - name : "Graphic Designer"
@@ -72,19 +72,19 @@ skill:
   skill_list:
     # skill item loop
     - name : "Web Development"
-      parcentage : "98%"
+      percentage : "98%"
       
     # skill item loop
     - name : "Graphic Design"
-      parcentage : "85%"
+      percentage : "85%"
       
     # skill item loop
     - name : "Database Management"
-      parcentage : "90%"
+      percentage : "90%"
       
     # skill item loop
     - name : "Wordpress"
-      parcentage : "70%"
+      percentage : "70%"
 
 
 ################################### Service ##############################3
