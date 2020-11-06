@@ -6,6 +6,10 @@ html {
   height: 100%;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 * {
   outline: none;
 }
@@ -605,7 +609,7 @@ input:checked + label span:last-child {
   left: 0;
   right: 0;
   height: 55px;
-  background: #333;
+  /*background: #333;*/
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -626,7 +630,8 @@ input:checked + label span:last-child {
 }
 
 .desktop-menu-logo img {
-  height: 42px;
+  height: 50px;
+  margin-left: 20px;
 }
 
 .desktop-menu-logo {
@@ -638,7 +643,7 @@ input:checked + label span:last-child {
   -ms-flex-align: center;
   align-items: center;
   position: absolute;
-  left: 5px;
+  left: 1px;
 }
 
 .menu-item {
@@ -685,6 +690,7 @@ input:checked + label span:last-child {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  margin-left: 150px;
 }
 
 .menu-item a {
@@ -718,7 +724,7 @@ input:checked + label span:last-child {
 }
 
 .mobile-menu-logo img {
-  height: 55px;
+  height: 50px;
 }
 
 .mobile-menu-logo {
@@ -848,12 +854,155 @@ input:checked + label span:last-child {
 ----------------------------------*/
 
 /*--------------------------------
+  Start Services
+----------------------------------*/
+
+.services {
+  background: #fff;
+  padding: 125px 0px 70px 0px;
+}
+
+.services-heading {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.services-heading h1 {
+  color: #6f6f6f;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.services-heading h1:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 70px;
+  height: 5px;
+  background: #6f6f6f;
+}
+
+.services-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+}
+
+.service-img {
+  width: 100px;
+  margin: auto;
+}
+
+.services-icon img {
+  width: 100%;
+}
+
+.service-label {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-size: 19px;
+  border-bottom: 1px solid #6f6f6f;
+}
+
+.service-description {
+  text-align: justify;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.services h4 {
+  font-size: 19px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-weight: 700;
+  color: #4d4d4d;
+}
+
+.services p {
+  color: #6f6f6f;
+  font-size: 16px;
+}
+
+.need-service {
+  width: 100%;
+  height: 250px;
+  margin-top: 70px;
+  background: #313131;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  text-align: center;
+}
+
+.need-service:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.need-service h1 {
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  padding-top: 70px;
+  margin: 0;
+  font-size: 40px;
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+.need-service a {
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+  color: #313131;
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 14px;
+  display: inline-block;
+  background: #fff;
+  padding: 10px 19px;
+  border-radius: 25px;
+  transition: background 0.5s;
+}
+
+.need-service a:hover {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 8px 17px;
+}
+
+/*--------------------------------
+ End Services
+----------------------------------*/
+/*--------------------------------
    Start About Me
 ----------------------------------*/
 
 .about-me {
   background: #fff;
-  padding: 125px 0px 70px 0px;
+  padding: 70px 0px;
 }
 
 .about-me-text h1 {
@@ -895,7 +1044,11 @@ input:checked + label span:last-child {
 }
 
 .about-me-images img {
-  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width:  70%;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
@@ -909,7 +1062,7 @@ input:checked + label span:last-child {
 }
 
 .about-me-images img:hover {
-  width: 100%;
+  width: 70%;
   -webkit-filter: grayscale(0%);
   -moz-filter: grayscale(0%);
   -ms-filter: grayscale(0%);
@@ -1068,28 +1221,28 @@ ul.experience-chart h4 {
 ----------------------------------*/
 
 /*--------------------------------
-  Start Services
+  Start Certifications
 ----------------------------------*/
 
-.services {
+.certifications {
   background: #fff;
   padding: 70px 0px;
 }
 
-.services-heading {
+.certifications-heading {
   position: relative;
 }
 
-.services-heading h1 {
+.certifications-heading h1 {
   color: #6f6f6f;
   text-align: center;
   font-weight: 700;
   letter-spacing: 4px;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   position: relative;
 }
 
-.services-heading h1:before {
+.certifications-heading h1:before {
   content: "";
   position: absolute;
   top: -8px;
@@ -1101,7 +1254,7 @@ ul.experience-chart h4 {
   background: #6f6f6f;
 }
 
-.services-icon {
+.certifications-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1113,85 +1266,40 @@ ul.experience-chart h4 {
   padding-bottom: 40px;
 }
 
-.service-img {
+.certification-img {
   width: 100px;
   margin: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
 }
 
-.services-icon img {
+.certifications-icon img {
   width: 100%;
 }
 
-.service-label {
-  position: absolute;
+.certification-label {
   left: 0;
   right: 0;
-  top: 100px;
   text-align: center;
   font-weight: 700;
   letter-spacing: -0.5px;
   font-size: 19px;
 }
 
-.need-service {
-  width: 100%;
-  height: 250px;
-  margin-top: 70px;
-  background: #313131;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  position: relative;
+.certifications h4 {
+  font-size: 19px;
+  margin-top: 0;
+  margin-bottom: 4px;
   text-align: center;
-}
-
-.need-service:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.need-service h1 {
-  position: relative;
-  color: #fff;
   font-weight: 700;
-  padding-top: 70px;
-  margin: 0;
-  font-size: 40px;
-  letter-spacing: 2px;
-  z-index: 2;
-}
-
-.need-service a {
-  position: relative;
-  z-index: 2;
-  text-decoration: none;
-  color: #313131;
-  font-weight: bold;
-  font-size: 17px;
-  margin-top: 14px;
-  display: inline-block;
-  background: #fff;
-  padding: 10px 19px;
-  border-radius: 25px;
-  transition: background 0.5s;
-}
-
-.need-service a:hover {
-  background: transparent;
-  color: #fff;
-  border: 2px solid #fff;
-  padding: 8px 17px;
+  letter-spacing: -0.5px;
+  color: #4d4d4d;
 }
 
 /*--------------------------------
- End Services
+ End Certifications
 ----------------------------------*/
 
 /*--------------------------------
@@ -1415,7 +1523,7 @@ ul.experience-chart h4 {
   left: 0;
   right: 0;
   margin: auto;
-  width: 80px;
+  width: 50px;
   height: 5px;
   background: #6f6f6f;
 }
@@ -1507,7 +1615,7 @@ ul.experience-chart h4 {
 .fun-fact-holder img {
   display: block;
   margin: auto;
-  width: 80px;
+  width: 50px;
 }
 
 .fun-fact-holder p {
@@ -1536,12 +1644,13 @@ ul.experience-chart h4 {
 .contact {
   background: #313131;
   /* Fallback Background */
-  background-image: url("../images/backgrounds/contact-us-bg.jpg");
+  background-image: url("../images/backgrounds/contact-us-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: relative;
+  margin-top: 20px;
 }
 
 .contact:after {
@@ -1617,6 +1726,7 @@ textarea.form-control::-webkit-input-placeholder,
 }
 
 .hvr-icon-push:before {
+  font-family: "Font Awesome 5 Free";
   content: "\f1d8";
   right: 19px;
 }
@@ -1704,6 +1814,10 @@ textarea.form-control::-webkit-input-placeholder,
   left: 0;
   right: 0;
   text-align: center;
+  color: #fff;
+}
+
+.credit a {
   color: #fff;
 }
 
@@ -1932,11 +2046,11 @@ textarea.form-control::-webkit-input-placeholder,
 @media (max-width: 991px) {
   .desktop-menu {
     width: 95%;
-    margin-left: 10px;
+    margin-left: 150px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 765px) {
   .desktop-menu {
     display: none;
   }
@@ -1963,7 +2077,7 @@ textarea.form-control::-webkit-input-placeholder,
   }
 }
 
-@media(min-width: 601px) {
+@media(min-width: 766px) {
   .mobile-menu-fix {
     display: none;
   }
@@ -2044,6 +2158,11 @@ textarea.form-control::-webkit-input-placeholder,
     letter-spacing: 0;
     font-size: 17px;
   }
+  .service-description {
+    top: 110px;
+    letter-spacing: 0;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 525px) {
@@ -2055,7 +2174,7 @@ textarea.form-control::-webkit-input-placeholder,
 
 @media (max-width: 475px) {
   .services-heading h1 {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
   }
 }
 

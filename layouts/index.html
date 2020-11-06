@@ -3,103 +3,18 @@
 {{ $data := index .Site.Data .Site.Language.Lang }}
 
 <!-- =============================
-      Start Header
-    =============================== -->
-<section class="header" id="home">
-  <div class="logo">
-    <img class="img-fluid" src="{{ .Site.Params.logo_light | relURL }}" alt="{{ .Site.Title }}">
-  </div>
-  <div class="slider-prev-button slider-button">
-    <i class="fa fa-angle-left"></i>
-  </div>
-  <div class="slider-next-button slider-button">
-    <i class="fa fa-angle-right"></i>
-  </div>
-  {{ with $data.homepage.hero }}
-  <div class="owl-carousel owl-full-width owl-theme" id="background-slide">
-    {{ range .slider_image }}
-    <div class="slider"><img class="img-fluid" src="{{ . | absURL }}" alt="slider-background"></div>
-    {{ end }}
-  </div>
-  <div class="container">
-    <div class="row content">
-      <div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 head-container">
-        <div class="head-holder">
-          <h1 class="introduction">{{ .title | markdownify | emojify }}</h1>
-          <div class="animated-text">
-            <strong class="cd-headline clip">
-              <span class="cd-words-wrapper">
-                {{ range $index, $elements:= .occupations }}
-                <b {{ if eq $index 0 }} class="is-visible" {{ end }}>{{ . }}</b>
-                {{ end }}
-              </span>
-            </strong>
-          </div>
-          {{ if .button.enable }}
-          {{ with .button }}
-          <a class="hireMe" href="{{ .link }}">{{ .label }}</a>
-          {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
-
-  {{ if $data.homepage.fullscreen_nav.enable }}
-  <div class="navigation-icon">
-    <input id="burger" type="checkbox" />
-    <label for="burger" class="burger-menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-  </div>
-  <div class="fullscreen-nav-container"
-    style="background-image: url('{{ $data.homepage.fullscreen_nav.bg_image | absURL }}');">
-    <div class="container-fluid">
-      <div class="full-nav-container row">
-        <div class="full-nav-holder">
-          <div class="full-nav-content">
-            <div class="name">
-              {{ with $data.homepage.fullscreen_nav.first_name }}<div class="first-name">{{ . }}</div>{{ end }}
-              {{ with $data.homepage.fullscreen_nav.last_name }}<div class="last-name">{{ . }}</div>{{ end }}
-            </div>
-            <div class="fulscreen-nav">
-              <ul class="list-inline fullscreen-nav-holder">
-                {{ range .Site.Menus.main }}
-                <li><a class="text-uppercase" href="{{ .URL }}">{{ .Name }}</a></li>
-                {{ end }}
-              </ul>
-            </div>
-            <div class="full-nav-icon-holder">
-              <ul class="full-nav-icons list-inline">
-                {{ range .Site.Params.social }}
-                <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
-                {{ end }}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
-</section>
-<!-- =============================
-       End Header
-    =============================== -->
-
-<!-- =============================
       Start Menu
     =============================== -->
-<section class="menu" id="menu">
+<section class="menu menu-fix" id="menu">
   <nav>
     <!-- desktop-menu -->
     <div class="menu-container">
+        <div class="desktop-menu-logo"><a href="{{.Site.BaseURL | relLangURL }}"><img class="img-fluid"
+              src="{{ .Site.Params.logo_light | absURL }}" alt="{{ .Site.Title }}" id="desktop-logo"></a>
+        </div>
       <ul class="desktop-menu list-inline mb-0" id="desktop-menu">
         {{ range .Site.Menus.main }}
-        <li class="menu-item hvr-underline-from-left 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
+        <li class="menu-item hvr-underline-from-left {{ .Weight }}"><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
       <!-- Language List -->
@@ -167,7 +82,7 @@
             {{ end }}
             <ul class="mobile-menu-icons list-inline">
               {{ range .Site.Params.social }}
-              <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+              <li><a href="{{ .link | safeURL }}"><i class="fab {{ .icon }}"></i></a></li>
               {{ end }}
             </ul>
           </nav>
@@ -181,77 +96,93 @@
     =============================== -->
 
 <!-- =============================
-       Start About Me
+      Start Header
     =============================== -->
-<section class="about-me" id="about">
+<section class="header" id="home">
+  {{ if .Site.Params.enable_logo }}
+  <div class="logo">
+    <img class="img-fluid" src="{{ .Site.Params.logo_light | relURL }}" alt="{{ .Site.Title }}">
+  </div>
+  {{ end }}
+  <div class="slider-prev-button slider-button">
+    <i class="fa fa-angle-left"></i>
+  </div>
+  <div class="slider-next-button slider-button">
+    <i class="fa fa-angle-right"></i>
+  </div>
+  {{ with $data.homepage.hero }}
+  <div class="owl-carousel owl-full-width owl-theme" id="background-slide">
+    {{ range .slider_image }}
+    <div class="slider"><img class="img-fluid" src="{{ . | absURL }}" alt="slider-background"></div>
+    {{ end }}
+  </div>
   <div class="container">
-    {{ if $data.homepage.about.enable }}
-    {{ with $data.homepage.about }}
-    <div class="row about-me-holder">
-      <div class="col-lg-6 col-md-6 col-sm-6 about-me-text d-flex align-self-center">
-        <div class="text-holder wow fadeInUp" data-wow-duration="1.5s">
-          <h1>{{ .title | safeHTML }}</h1>
-          <p>{{ .content | markdownify | emojify }}</p>
+    <div class="row content">
+      <div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 head-container">
+        <div class="head-holder">
+          <h1 class="introduction">{{ .title | markdownify | emojify }}</h1>
+          <div class="animated-text">
+            <strong class="cd-headline clip">
+              <span class="cd-words-wrapper">
+                {{ range $index, $elements:= .occupations }}
+                <b {{ if eq $index 0 }} class="is-visible" {{ end }}>{{ . }}</b>
+                {{ end }}
+              </span>
+            </strong>
+          </div>
           {{ if .button.enable }}
           {{ with .button }}
-          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang" {{ if .download }}download{{ if .filename }}="{{ .filename }}" {{ end }} {{ end }}> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
+          <a class="hireMe" href="{{ .link }}">{{ .label }}</a>
           {{ end }}
           {{ end }}
         </div>
       </div>
-      {{ with .image }}
-      <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
-        <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
-      </div>
-      {{ end }}
-    </div>
-    {{ end }}
-    {{ end }}
-
-    <div class="row experience-skill">
-      {{ if $data.homepage.experience.enable }}
-      {{ with $data.homepage.experience }}
-      <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
-        <h3>{{ .title }}</h3>
-        <ul class="experience-chart">
-          {{ range .experience_list }}
-          <li>
-            <div class="single-experience">
-              <h4>{{ .name | markdownify }}</h4>
-              {{ with .company }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
-            </div>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
-      {{ end }}
-
-      {{ if $data.homepage.skill.enable }}
-      {{ with $data.homepage.skill }}
-      <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
-        <h3>{{ .title }}</h3>
-        <div class="skill-progress-bar">
-          {{ range .skill_list }}
-          <div class="clearfix">
-            <span class="skillbar-title">{{ .name }}</span>
-            <span class="skill-bar-percent">{{ .percentage }}</span>
-            <div class="skillbar" data-percent="{{ .percentage }}">
-              <div class="skillbar-bar"></div>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-      {{ end }}
-      {{ end }}
     </div>
   </div>
+  {{ end }}
+
+  {{ if $data.homepage.fullscreen_nav.enable }}
+  <div class="navigation-icon">
+    <input id="burger" type="checkbox" />
+    <label for="burger" class="burger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+  <div class="fullscreen-nav-container"
+    style="background-image: url('{{ $data.homepage.fullscreen_nav.bg_image | absURL }}');">
+    <div class="container-fluid">
+      <div class="full-nav-container row">
+        <div class="full-nav-holder">
+          <div class="full-nav-content">
+            <div class="name">
+              {{ with $data.homepage.fullscreen_nav.first_name }}<div class="first-name">{{ . }}</div>{{ end }}
+              {{ with $data.homepage.fullscreen_nav.last_name }}<div class="last-name">{{ . }}</div>{{ end }}
+            </div>
+            <div class="fulscreen-nav">
+              <ul class="list-inline fullscreen-nav-holder">
+                {{ range .Site.Menus.main }}
+                <li><a class="text-uppercase" href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+              </ul>
+            </div>
+            <div class="full-nav-icon-holder">
+              <ul class="full-nav-icons list-inline">
+                {{ range .Site.Params.social }}
+                <li><a href="{{ .link | safeURL }}"><i class="fab {{ .icon }}"></i></a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
 </section>
 <!-- =============================
-      End About Me
+       End Header
     =============================== -->
 
 <!-- =============================
@@ -262,19 +193,25 @@
   {{ with $data.homepage.service }}
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mx-auto col-sm-10">
+      <div class="col-lg-12 mx-auto col-sm-12">
         <div class="wow fadeInUp" data-wow-duration="1.5s">
           <div class="services-heading">
             <div class="bar"></div>
             <h1>{{ .title }}</h1>
+            <p>{{ .main_description | markdownify }}</p>
           </div>
+
           <div class="row">
             {{ range .service_list }}
-            <div class="col-lg-4 col-sm-4 col-12 services-icon">
-              <div class="service-img">
-                <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
-              </div>
-              <div class="service-label">{{ .name | markdownify }}</div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="service-label">
+                    <span class="fas fa-stack fa-2x" style="font-size: 2em; color: #6f6f6f;">
+                        <i class="fas fa-square fa-stack-2x"></i>
+                        <i class="fas fa-xs fa-stack-1x fa-{{ .icon }} fa-inverse"></i>
+                    </span>
+                    <h4 style="margin-top:10px">{{ .name | markdownify }}</h4>
+                </div>
+                <p class="service-description">{{ .description | markdownify }}</p>
             </div>
             {{ end }}
           </div>
@@ -302,6 +239,120 @@
 </section>
 <!-- =============================
        End Services
+    =============================== -->
+
+<!-- =============================
+       Start About Me
+    =============================== -->
+<section class="about-me" id="about">
+  <div class="container">
+    {{ if $data.homepage.about.enable }}
+    {{ with $data.homepage.about }}
+    <div class="row about-me-holder">
+      <div class="col-lg-6 col-md-6 col-sm-6 about-me-text d-flex align-self-center">
+        <div class="text-holder wow fadeInUp" data-wow-duration="1.5s">
+          <h1>{{ .title | safeHTML }}</h1>
+          <p>{{ .content | markdownify | emojify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+
+          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang" {{ if .download }}download{{ if .filename }}="{{ .filename }}" {{ end }} {{ end }}> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+      {{ with .image }}
+      <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
+        <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+
+    <div class="row experience-skill">
+      {{ if $data.homepage.experience.enable }}
+      {{ with $data.homepage.experience }}
+      <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
+        <h3>{{ .title }}</h3>
+        <ul class="experience-chart">
+          {{ range .experience_list }}
+          <li>
+            <div class="single-experience">
+              <h4>{{ .name | markdownify }}</h4>
+              {{ with .company }} <span>{{ . | markdownify }} |</span> {{ end }}
+              {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
+              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+      {{ end }}
+
+      {{ if $data.homepage.skill.enable }}
+      {{ with $data.homepage.skill }}
+      <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
+        <h3>{{ .title }}</h3>
+        <div class="skill-progress-bar">
+          {{ range .skill_list }}
+          <div class="clearfix">
+            <span class="skillbar-title">{{ .name }}</span>
+            {{ if $data.homepage.skill.showpercent }}
+            <span class="skill-bar-percent">{{ .parcentage }}</span>
+            {{ end }}
+            <div class="skillbar" data-percent="{{ .parcentage }}">
+              <div class="skillbar-bar"></div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- =============================
+      End About Me
+    =============================== -->
+
+<!-- =============================
+      Start Certification
+    =============================== -->
+<section class="certifications" id="certification">
+  {{ if $data.homepage.certification.enable }}
+  {{ with $data.homepage.certification }}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto col-sm-10">
+        <div class="wow fadeInUp" data-wow-duration="1.5s">
+          <div class="certifications-heading">
+            <div class="bar"></div>
+            <h1>{{ .title }}</h1>
+          </div>
+          <div class="row">
+            {{ range .certification_list }}
+            <div class="col-lg-3 col-sm-3 col-12">
+              <div class="certification-label">
+                <img class="certification-img img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+                <h4 style="margin-top:10px">{{ .name | markdownify }}</h4>
+              </div>
+              <!--<div class="certification-label">{{ .name | markdownify }}</div>-->
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+
+</section>
+<!-- =============================
+       End Certifications
     =============================== -->
 
 <!-- =============================
@@ -357,12 +408,12 @@
 <!-- =============================
        Start Testimonials
     =============================== -->
+{{ if $data.homepage.testimonial.enable }}
+{{ with $data.homepage.testimonial }}
 <section class="testimonials" id="testimonial">
   <div class="container">
     <div class="row">
       <div class="testimonials-container col-lg-8 offset-lg-2">
-        {{ if $data.homepage.testimonial.enable }}
-        {{ with $data.homepage.testimonial }}
         <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .title }}</h1>
         <div class="owl-carousel owl-theme wow fadeInUp" data-wow-duration="1.5s">
           {{ range .testimonial_slider }}
@@ -390,12 +441,12 @@
           </div>
           {{ end }}
         </div>
-        {{ end }}
-        {{ end }}
       </div>
     </div>
   </div>
 </section>
+{{ end }}
+{{ end }}
 <!-- =============================
        End Testimonials
     =============================== -->
@@ -420,11 +471,11 @@
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-12">
-              <textarea class="form-control" name="message" id="message" rows="12" placeholder="Message"></textarea>
+              <textarea class="form-control" name="message" id="message" rows="12" placeholder="{{ i18n "message" }}"></textarea>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-12 sub-button">
-              <button class="submit form-control hvr-icon-push" type="submit" value="send"> Submit </button>
+              <button class="submit form-control hvr-icon-push" type="submit" value="send"> {{ i18n "send" }} </button>
             </div>
           </div>
         </form>
@@ -435,14 +486,14 @@
         <hr>
         <ul class="footer-icons list-inline">
           {{ range .Site.Params.social }}
-          <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+          <li><a href="{{ .link | safeURL }}" target="_blank"><i class="fab {{ .icon }} fa-inverse fa-2x"></i></a></li>
           {{ end }}
         </ul>
         <div class="to-top">
           <a href="#home"><i class="fa fa-chevron-up"></i></a>
         </div>
         <div class="credit">
-          <i class="fa fa-copyright"></i> {{ .Site.Params.copyright | markdownify }}
+          <i class="fas fa-copyright"></i> {{ .Site.Params.copyright | markdownify }}
         </div>
       </div>
     </div>
