@@ -1,4 +1,4 @@
-# Somrat - A unique hugo portfolio template
+# Somrat - A unique hugo portfolio template (Archived)
 
 It's a unique portfolio template that made your portfolio website looks great, This is a landing page template powered by bootstrap.
 
