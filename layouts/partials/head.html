@@ -2,23 +2,45 @@
   <meta charset="utf-8">
   <title>{{ .Title }}</title>
 
-  {{ "<!-- mobile responsive meta -->" | safeHTML }}
+  <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{{ with .Params.Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
-  {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <meta name="description"
+    content="{{ with .Params.Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+  {{ with site.Params.author }}
+  <meta name="author" content="{{ . }}">{{ end }}
   {{ hugo.Generator }}
 
-  {{ "<!-- plugins -->" | safeHTML }}
-  {{ range .Site.Params.plugins.css }}
+  <!-- plugins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  {{ range site.Params.plugins.css }}
   <link rel="stylesheet" href="{{ .link | absURL }}">
   {{ end }}
 
-  {{ "<!-- Main Stylesheet -->" | safeHTML }}
+  <!-- Main Stylesheet -->
   {{ $styles := resources.Get "css/style.css" | minify }}
   <link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
 
-  {{ "<!--Favicon-->" | safeHTML }}
-  <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
-  <link rel="icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
+  <!-- Custom stylesheet -->
+  {{ if fileExists "css/custom.css" }}
+  {{ $custom := resources.Get "css/custom.css" | minify }}
+  <link rel="stylesheet" href="{{ $custom.Permalink }}" media="screen">
+  {{ end }}
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+
+  <!-- multilingual SEO optimizations -->
+  {{ if .IsTranslated }}
+  {{ range .Page.AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  {{ end }}
+  {{ end }}
+
+  {{ with .Params.image }}
+  <meta property="og:image" content="{{ . | absURL }}" />
+  {{ end }}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/google_analytics.html" . }}
 
 </head>

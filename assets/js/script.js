@@ -224,19 +224,27 @@
 	/*--------------------------------
 			 Start Portfolio
 	----------------------------------*/
-	// Initialize filterizr Plugin
-	var filterizd = $('.filtr-container').filterizr();
+	// Shuffle js filter 
+	var containerEl = document.querySelector('.filtr-wrapper');
+	if (containerEl) {
+		var Shuffle = window.Shuffle;
+		var myShuffle = new Shuffle(document.querySelector('.filtr-wrapper'), {
+			itemSelector: '.filtr-item',
+			buffer: 1
+		});
 
-	// Styling of Filter Controls
-	$(".portfolio-navigation li").on("click", function () {
-		$(".portfolio-navigation li").removeClass("active");
-		$(this).addClass("active");
-	});
+		jQuery('input[name="shuffle-filter"]').on('change', function (evt) {
+			var input = evt.currentTarget;
+			if (input.checked) {
+				myShuffle.filter(input.value);
+			}
+		});
+	}
 
 	// Initialize MagnificPopup Plugin
-	$('.filtr-container').magnificPopup({
+	$('.filtr-wrapper').magnificPopup({
 		type: 'image',
-		delegate: 'a',
+		delegate: '.image-pop',
 		gallery: {
 			enabled: true
 		},
@@ -246,19 +254,6 @@
 			easing: 'ease-in-out'
 		}
 	});
-
-	// Galley Shuffle When Scrolled Down
-	$('.services').waypoint({
-		handler: function (direction) {
-			if (direction == "down") {
-				filterizd.filterizr('shuffle');
-			}
-		},
-		offset: "bottom-in-view"
-	});
-
-	// load more button
-
 	/*--------------------------------
 			 End Portfolio
 	----------------------------------*/

@@ -1,82 +1,99 @@
-{{ "<!-- navigation -->" | safeHTML }}
-<header class="fixed-top navigation">
-  <div class="container">
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-      <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}"><img class="img-fluid"
-          src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-align-right h3 text-white"></i>
-      </button>
-
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.Home }}</a>
-          </li>
-          {{ range .Site.Menus.main }}
-          {{ if .HasChildren }}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              {{ .Name }}
-            </a>
-            <div class="dropdown-menu">
-              {{ range .Children }}
-              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
-              {{ end }}
-            </div>
-          </li>
+<!-- =============================
+      Start Menu
+    =============================== -->
+<section class="menu menu-fix" id="home">
+  <nav>
+    <!-- desktop-menu -->
+    <div class="menu-container menu-normal">
+      <ul class="desktop-menu list-inline mb-0 justify-content-end" id="desktop-menu">
+        <a class="mr-auto" href="{{ site.BaseURL | relLangURL }}">
+          {{ if site.Params.logo_dark }}
+          <img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo_dark | absURL}}"
+            alt="{{ site.Title }}">
           {{ else }}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
-          </li>
+          {{site.Title}}
           {{ end }}
-          {{ end }}
-        </ul>
-
-        <!-- Language List -->
-        {{ if .IsTranslated }}
-        <select class="m-2 border-0" id="select-language" onchange="location = this.value;">
-          {{ $siteLanguages := .Site.Languages}}
-          {{ $pageLang := .Page.Lang}}
-          {{ range .Page.AllTranslations }}
-          {{ $translation := .}}
-          {{ range $siteLanguages }}
-          {{ if eq $translation.Lang .Lang }}
-          {{ $selected := false }}
-          {{ if eq $pageLang .Lang}}
-          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
-          </option>
-          {{ else }}
-          <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
-          {{ end }}
-          {{ end }}
-          {{ end }}
-          {{ end }}
-        </select>
+        </a>
+        {{ range site.Menus.main }}
+        <li class="menu-item menu-item-transparent dark hvr-underline-from-left 1"><a href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a></li>
         {{ end }}
+      </ul>
+      <!-- Language List -->
+      {{- if .IsTranslated }}
+      <select id="select-language" onchange="location = this.value;">
+        {{ $siteLanguages := site.Languages}}
+        {{ $pageLang := .Page.Lang}}
+        {{ range .Page.AllTranslations }}
+        {{ $translation := .}}
+        {{ range $siteLanguages }}
+        {{ if eq $translation.Lang .Lang }}
+        {{ $selected := false }}
+        {{ if eq $pageLang .Lang}}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+        </option>
+        {{ else }}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </select>
+      {{ end }}
+      <!-- /desktop-menu -->
 
-        {{ if .Site.Params.search }}
-        {{ "<!-- search -->" | safeHTML }}
-        <div class="search px-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="{{ `search`| relLangURL }}" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+      <!-- mobile-menu -->
+      <div class="mobile-menu">
+        <a class="menu-link">
+          <div class="mobile-menu-nav">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
+        </a>
+        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
+              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
         </div>
-        {{ end }}
-
-        {{ if .Site.Params.navigation_button.enable }}
-        {{ "<!-- get start btn -->" | safeHTML }}
-        <a href="{{ .Site.Params.navigation_button.link | absURL }}"
-          class="btn btn-primary ml-lg-4">{{ .Site.Params.navigation_button.label }}</a>
-        {{ end }}
+        <div class="menu-slider">
+          <nav>
+            <ul class="mobile-menu-list">
+              {{ range site.Menus.main }}
+              <li class="hvr-shutter-out-vertical mobile-menu-item 1"><a href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+            <!-- Language List -->
+            {{- if .IsTranslated }}
+            <select class="ml-4" id="select-language" onchange="location = this.value;">
+              {{ $siteLanguages := site.Languages}}
+              {{ $pageLang := .Page.Lang}}
+              {{ range .Page.AllTranslations }}
+              {{ $translation := .}}
+              {{ range $siteLanguages }}
+              {{ if eq $translation.Lang .Lang }}
+              {{ $selected := false }}
+              {{ if eq $pageLang .Lang}}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}
+              </option>
+              {{ else }}
+              <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+              {{ end }}
+              {{ end }}
+              {{ end }}
+              {{ end }}
+            </select>
+            {{ end }}
+            <ul class="mobile-menu-icons list-inline">
+              {{ range site.Params.social }}
+              <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+              {{ end }}
+            </ul>
+          </nav>
+        </div>
       </div>
-    </nav>
-  </div>
-</header>
-{{ "<!-- /navigation -->" | safeHTML }}
+    </div>
+  </nav>
+</section>
+
+<div style="height: 50px;"></div>
+<!-- =============================
+          End Menu
+        =============================== -->

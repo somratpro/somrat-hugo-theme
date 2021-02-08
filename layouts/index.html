@@ -1,13 +1,10 @@
 {{ define "main" }}
 
-{{ $data := index .Site.Data .Site.Language.Lang }}
-
-<!-- =============================
-      Start Header
-    =============================== -->
-<section class="header" id="home">
+<!-- Start Header -->
+{{ with .GetPage "banner" }}
+<section class="header {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="home">
   <div class="logo">
-    <img class="img-fluid" src="{{ .Site.Params.logo_light | relURL }}" alt="{{ .Site.Title }}">
+    <img class="img-fluid" src="{{ site.Params.logo_light | relURL }}" alt="{{ site.Title }}">
   </div>
   <div class="slider-prev-button slider-button">
     <i class="fa fa-angle-left"></i>
@@ -15,9 +12,8 @@
   <div class="slider-next-button slider-button">
     <i class="fa fa-angle-right"></i>
   </div>
-  {{ with $data.homepage.hero }}
   <div class="owl-carousel owl-full-width owl-theme" id="background-slide">
-    {{ range .slider_image }}
+    {{ range .Params.slider_images }}
     <div class="slider"><img class="img-fluid" src="{{ . | absURL }}" alt="slider-background"></div>
     {{ end }}
   </div>
@@ -25,28 +21,27 @@
     <div class="row content">
       <div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 head-container">
         <div class="head-holder">
-          <h1 class="introduction">{{ .title | markdownify | emojify }}</h1>
+          <h1 class="introduction">{{ .Title | markdownify | emojify }}</h1>
           <div class="animated-text">
             <strong class="cd-headline clip">
               <span class="cd-words-wrapper">
-                {{ range $index, $elements:= .occupations }}
+                {{ range $index, $elements:= .Params.occupations }}
                 <b {{ if eq $index 0 }} class="is-visible" {{ end }}>{{ . }}</b>
                 {{ end }}
               </span>
             </strong>
           </div>
-          {{ if .button.enable }}
-          {{ with .button }}
-          <a class="hireMe" href="{{ .link }}">{{ .label }}</a>
+          {{ with .Params.button }}
+          {{ if .enable }}
+          <a class="hireMe" href="{{ .link | absURL}}">{{ .label }}</a>
           {{ end }}
           {{ end }}
         </div>
       </div>
     </div>
   </div>
-  {{ end }}
 
-  {{ if $data.homepage.fullscreen_nav.enable }}
+  <!-- full nav start -->
   <div class="navigation-icon">
     <input id="burger" type="checkbox" />
     <label for="burger" class="burger-menu">
@@ -55,27 +50,28 @@
       <span></span>
     </label>
   </div>
-  <div class="fullscreen-nav-container"
-    style="background-image: url('{{ $data.homepage.fullscreen_nav.bg_image | absURL }}');">
+  <div class="fullscreen-nav-container" style="background-image: url('{{ .Params.bg_image | absURL }}');">
     <div class="container-fluid">
       <div class="full-nav-container row">
         <div class="full-nav-holder">
           <div class="full-nav-content">
             <div class="name">
-              {{ with $data.homepage.fullscreen_nav.first_name }}<div class="first-name">{{ . }}</div>{{ end }}
-              {{ with $data.homepage.fullscreen_nav.last_name }}<div class="last-name">{{ . }}</div>{{ end }}
+              {{ with .Params.first_name }}<div class="first-name">{{ . }}</div>{{ end }}
+              {{ with .Params.last_name }}<div class="last-name">{{ . }}</div>{{ end }}
             </div>
             <div class="fulscreen-nav">
               <ul class="list-inline fullscreen-nav-holder">
-                {{ range .Site.Menus.main }}
-                <li><a class="text-uppercase" href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ range site.Menus.main }}
+                <li><a class="text-uppercase"
+                    href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+                </li>
                 {{ end }}
               </ul>
             </div>
             <div class="full-nav-icon-holder">
               <ul class="full-nav-icons list-inline">
-                {{ range .Site.Params.social }}
-                <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+                {{ range site.Params.social }}
+                <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
                 {{ end }}
               </ul>
             </div>
@@ -86,26 +82,24 @@
   </div>
 </section>
 {{ end }}
-<!-- =============================
-       End Header
-    =============================== -->
+<!-- End Header -->
 
-<!-- =============================
-      Start Menu
-    =============================== -->
+<!-- Start Menu -->
 <section class="menu" id="menu">
   <nav>
     <!-- desktop-menu -->
     <div class="menu-container">
       <ul class="desktop-menu list-inline mb-0" id="desktop-menu">
-        {{ range .Site.Menus.main }}
-        <li class="menu-item hvr-underline-from-left 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ range site.Menus.main }}
+        <li class="menu-item hvr-underline-from-left 1"><a
+            href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+        </li>
         {{ end }}
       </ul>
       <!-- Language List -->
-      {{- if .Site.IsMultiLingual }}
+      {{- if .IsTranslated }}
       <select id="select-language" onchange="location = this.value;">
-        {{ $siteLanguages := .Site.Languages}}
+        {{ $siteLanguages := site.Languages}}
         {{ $pageLang := .Page.Lang}}
         {{ range .Page.AllTranslations }}
         {{ $translation := .}}
@@ -134,20 +128,22 @@
             <span></span>
           </div>
         </a>
-        <div class="mobile-menu-logo"><a href="{{.Site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ .Site.Params.logo_dark | absURL }}" alt="{{ .Site.Title }}"></a>
+        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
+              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
         </div>
         <div class="menu-slider">
           <nav>
             <ul class="mobile-menu-list">
-              {{ range .Site.Menus.main }}
-              <li class="hvr-shutter-out-vertical mobile-menu-item 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
+              {{ range site.Menus.main }}
+              <li class="hvr-shutter-out-vertical mobile-menu-item 1"><a
+                  href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+              </li>
               {{ end }}
             </ul>
             <!-- Language List -->
-            {{- if .Site.IsMultiLingual }}
+            {{- if .IsTranslated }}
             <select class="ml-4" id="select-language" onchange="location = this.value;">
-              {{ $siteLanguages := .Site.Languages}}
+              {{ $siteLanguages := site.Languages}}
               {{ $pageLang := .Page.Lang}}
               {{ range .Page.AllTranslations }}
               {{ $translation := .}}
@@ -166,8 +162,8 @@
             </select>
             {{ end }}
             <ul class="mobile-menu-icons list-inline">
-              {{ range .Site.Params.social }}
-              <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+              {{ range site.Params.social }}
+              <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
               {{ end }}
             </ul>
           </nav>
@@ -176,41 +172,34 @@
     </div>
   </nav>
 </section>
-<!-- =============================
-      End Menu
-    =============================== -->
+<!-- End Menu -->
 
-<!-- =============================
-       Start About Me
-    =============================== -->
-<section class="about-me" id="about">
+<!-- Start About Me -->
+{{ with .GetPage "about" }}
+<section class="about-me {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="about">
   <div class="container">
-    {{ if $data.homepage.about.enable }}
-    {{ with $data.homepage.about }}
     <div class="row about-me-holder">
       <div class="col-lg-6 col-md-6 col-sm-6 about-me-text d-flex align-self-center">
         <div class="text-holder wow fadeInUp" data-wow-duration="1.5s">
-          <h1>{{ .title | safeHTML }}</h1>
-          <p>{{ .content | markdownify | emojify }}</p>
-          {{ if .button.enable }}
-          {{ with .button }}
+          <h1>{{ .Title | markdownify }}</h1>
+          <div class="content">{{ .Content | markdownify | emojify }}</div>
+          {{ with .Params.button }}
+          {{ if .enable }}
           <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang"> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
           {{ end }}
           {{ end }}
         </div>
       </div>
-      {{ with .image }}
+      {{ with .Params.image }}
       <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
         <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
       </div>
       {{ end }}
     </div>
-    {{ end }}
-    {{ end }}
 
     <div class="row experience-skill">
-      {{ if $data.homepage.experience.enable }}
-      {{ with $data.homepage.experience }}
+      {{ with .Params.experience }}
+      {{ if .enable }}
       <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
         <h3>{{ .title }}</h3>
         <ul class="experience-chart">
@@ -229,16 +218,16 @@
       {{ end }}
       {{ end }}
 
-      {{ if $data.homepage.skill.enable }}
-      {{ with $data.homepage.skill }}
+      {{ with .Params.skill }}
+      {{ if .enable }}
       <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
         <h3>{{ .title }}</h3>
         <div class="skill-progress-bar">
           {{ range .skill_list }}
           <div class="clearfix">
             <span class="skillbar-title">{{ .name }}</span>
-            <span class="skill-bar-percent">{{ .parcentage }}</span>
-            <div class="skillbar" data-percent="{{ .parcentage }}">
+            <span class="skill-bar-percent">{{ .percentage }}</span>
+            <div class="skillbar" data-percent="{{ .percentage }}">
               <div class="skillbar-bar"></div>
             </div>
           </div>
@@ -250,26 +239,22 @@
     </div>
   </div>
 </section>
-<!-- =============================
-      End About Me
-    =============================== -->
+{{ end }}
+<!-- End About Me -->
 
-<!-- =============================
-      Start Services
-    =============================== -->
-<section class="services" id="service">
-  {{ if $data.homepage.service.enable }}
-  {{ with $data.homepage.service }}
+<!-- Start Services -->
+{{ with .GetPage "service" }}
+<section class="services {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="service">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto col-sm-10">
         <div class="wow fadeInUp" data-wow-duration="1.5s">
           <div class="services-heading">
             <div class="bar"></div>
-            <h1>{{ .title }}</h1>
+            <h1>{{ .Title | markdownify }}</h1>
           </div>
           <div class="row">
-            {{ range .service_list }}
+            {{ range .Params.service_list }}
             <div class="col-lg-4 col-sm-4 col-12 services-icon">
               <div class="service-img">
                 <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
@@ -282,90 +267,93 @@
       </div>
     </div>
   </div>
-  {{ end }}
-  {{ end }}
+</section>
+{{ end }}
+<!-- End Services -->
 
-  {{ if $data.homepage.call_to_action.enable }}
-  {{ with $data.homepage.call_to_action }}
-  <div class="need-service wow fadeInUp" data-wow-duration="1.5s"
-    style="background-image: url('{{ .bg_image | absURL }}');">
-    <h1>{{ .title | markdownify }}</h1>
-    {{ with .content }} <p class="text-white">{{ . | markdownify }}</p> {{ end }}
-    {{ if .button.enable }}
-    {{ with .button }}
-    <a href="{{ .link }}">{{ .label }}</a>
+<!-- call to action -->
+{{ with .GetPage "call-to-action" }}
+<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}'); {{.Params.custom_css | safeCSS}}">
+  <div class="container position-relative z-index-9">
+    <h1>{{ .Title | markdownify }}</h1>
+    {{ with .Content }}<div class="text-white content">{{ . | markdownify }}</div> {{ end }}
+    {{ with .Params.button }}
+    {{ if .enable }}
+    <a href="{{ .link | absURL}}">{{ .label }}</a>
     {{ end }}
     {{ end }}
   </div>
-  {{ end }}
-  {{ end }}
 </section>
-<!-- =============================
-       End Services
-    =============================== -->
+{{ end }}
+<!-- end call to action -->
 
-<!-- =============================
-       Start Portfolio
-    =============================== -->
-{{ if $data.homepage.portfolio.enable }}
-{{ with $data.homepage.portfolio }}
-<section class="portfolio" id="portfolio">
+<!-- Start Portfolio -->
+{{ with .GetPage "portfolio"}}
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="portfolio">
   <div class="container-fluid text-center">
     <div class="row portfolio-holder text-left">
       <div class="col-12 text-center">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .title }}</h1>
+        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title }}</h1>
         <div class="filtering wow fadeInUp" data-wow-duration="1.5s">
-          <ul class="portfolio-navigation">
-            <li data-filter="all" class="hvr-sweep-to-right active">All Items</li>
+          <div class="btn-group btn-group-toggle portfolio-navigation" data-toggle="buttons">
+            <label class="btn btn-sm btn-primary active hvr-sweep-to-right">
+              <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
+            </label>
             {{ $categories := slice }}
-            {{ range .portfolio_list }}
-            {{ $categories = $categories | append .category }}
+            {{ range .Data.Pages }}
+            {{ range .Params.categories }}
+            {{ $categories = $categories | append . }}
+            {{ end }}
             {{ end }}
             {{ range ( $categories | uniq ) }}
-            <li data-filter="{{ . | urlize }}" class="hvr-sweep-to-right">{{ . | humanize }}</li>
+            <label class="btn btn-sm btn-primary hvr-sweep-to-right">
+              <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . | humanize }}
+            </label>
             {{ end }}
-          </ul>
+          </div>
         </div>
       </div>
       <div class="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto">
-        <div class="row filtr-container wow fadeInUp list" data-wow-duration="1.5s">
-          {{ range .portfolio_list }}
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item" data-category="{{ .category | urlize }}">
+        <div class="row filtr-wrapper wow fadeInUp list" data-wow-duration="1.5s">
+          {{ range first 6 .Data.Pages }}
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item"
+            data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
             <div class="item-holder">
-              <a href="{{ .image | absURL }}" title="{{ .name | safeHTML }}">
-                  <img src="{{ .image | absURL }}" alt="{{ .name | safeHTML }}">
-                <div class="item-caption">
-                  <h2>{{ .name | safeHTML }}</h2>
-                  <p>{{ .category | title }}</p>
-                  <div class="item-created">{{ .date }}</div>
-                </div>
+              <a class="image-pop" href="{{ .Params.image | absURL }}" title="{{ .Title | markdownify }}">
+                 <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}">
               </a>
+              <div class="item-caption">
+                <h2 class="mt-2"><a class="text-white" href="{{.Permalink}}">{{ .Title | markdownify }}</a></h2>
+                {{ range .Params.categories }}
+                <p class="mb-0 text-light">{{ . | title }}</p>
+                {{ end }}
+                <div class="item-created text-light">{{ .PublishDate.Format "02 Jan, 06" }}</div>
+              </div>
             </div>
           </div>
           {{ end }}
         </div>
+        {{ if gt (len .Data.Pages) 6}}
+        <div class="text-center wow fadeInUp mt-4" data-wow-duration="1.5s">
+          <a href="{{`portfolio` | absURL}}" class="btn btn-primary">See More</a>
+        </div>
+        {{ end }}
       </div>
     </div>
   </div>
 </section>
 {{ end }}
-{{ end }}
-<!-- =============================
-       End Portfolio
-    =============================== -->
+<!-- End Portfolio -->
 
-<!-- =============================
-       Start Testimonials
-    =============================== -->
-<section class="testimonials" id="testimonial">
+<!-- Start Testimonials -->
+{{ with .GetPage "testimonial"}}
+<section class="testimonials {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="testimonial">
   <div class="container">
     <div class="row">
       <div class="testimonials-container col-lg-8 offset-lg-2">
-        {{ if $data.homepage.testimonial.enable }}
-        {{ with $data.homepage.testimonial }}
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .title }}</h1>
+        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title | markdownify }}</h1>
         <div class="owl-carousel owl-theme wow fadeInUp" data-wow-duration="1.5s">
-          {{ range .testimonial_slider }}
+          {{ range .Params.testimonial_slider }}
           <div class="single-testimonial">
             <div class="testimonial-holder">
               <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
@@ -376,55 +364,62 @@
           </div>
           {{ end }}
         </div>
-        {{ end }}
-        {{ end }}
-
-        {{ if $data.homepage.funfacts.enable }}
-        {{ with $data.homepage.funfacts }}
-        <div class="fun-facts wow fadeInUp" data-wow-duration="1.5s">
-          {{ range .funfacts_list }}
-          <div class="fun-fact-holder">
-            <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
-            <p class="fact-counter count" data-count="{{ .count }}">0</p>
-            <p>{{ .name }}</p>
-          </div>
-          {{ end }}
-        </div>
-        {{ end }}
-        {{ end }}
       </div>
     </div>
   </div>
 </section>
-<!-- =============================
-       End Testimonials
-    =============================== -->
+{{ end }}
+<!-- End Testimonials -->
 
-<!-- =============================
-       Start Contact
-    =============================== -->
-{{ if $data.homepage.contact.enable }}
-<section class="contact" id="contact">
+<!-- funfacts -->
+{{ with .GetPage "funfacts"}}
+<section class="wow fadeInUp section-sm {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="{{.Params.custom_css | safeCSS}}">
+  <div class="container position-relative z-index-9">
+    {{ with .Title}}
+    <div class="services-heading">
+      <div class="bar"></div>
+      <h1>{{ . | markdownify }}</h1>
+    </div>
+    {{ end }}
+    <div class="fun-facts wow fadeInUp" data-wow-duration="1.5s">
+      {{ range .Params.funfacts }}
+      <div class="fun-fact-holder">
+        <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
+        <p class="fact-counter count" data-count="{{ .count }}">0</p>
+        <p>{{ .name }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- end funfacts -->
+
+<!-- Start Contact -->
+{{ with .GetPage "contact"}}
+<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | absURL}}'); {{.Params.custom_css | safeCSS}}" id="contact">
   <div class="container">
     <div class="row">
       <div class="contact-holder col-lg-8 offset-lg-2 col-sm-8 offset-sm-2">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ $data.homepage.contact.title }}</h1>
-        <form method="POST" action="{{ .Site.Params.contact_form_action }}" data-toggle="validator">
+        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title | markdownify}}</h1>
+        <form method="POST" action="{{ .Params.form_action }}" data-toggle="validator">
           <div class="form-container row wow fadeInUp" data-wow-duration="1.5s">
             <div class="form-group col-lg-6">
-              <input class="form-control" type="text" name="username" id="username" placeholder="Name" required>
+              <input class="form-control" type="text" name="username" id="username" placeholder="{{.Params.name}}"
+                required>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-6">
-              <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+              <input class="form-control" type="email" id="email" name="email" placeholder="{{.Params.email}}" required>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-12">
-              <textarea class="form-control" name="message" id="message" rows="12" placeholder="Message"></textarea>
+              <textarea class="form-control" name="message" id="message" rows="12"
+                placeholder="{{.Params.message}}"></textarea>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-12 sub-button">
-              <button class="submit form-control hvr-icon-push" type="submit" value="send"> Submit </button>
+              <button class="submit form-control hvr-icon-push" type="submit" value="send"> {{.Params.submit}} </button>
             </div>
           </div>
         </form>
@@ -434,24 +429,23 @@
       <div class="footer col-lg-10 offset-lg-1">
         <hr>
         <ul class="footer-icons list-inline">
-          {{ range .Site.Params.social }}
-          <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+          {{ range site.Params.social }}
+          <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
           {{ end }}
         </ul>
         <div class="to-top">
           <a href="#home"><i class="fa fa-chevron-up"></i></a>
         </div>
-        <div class="credit">
-          <i class="fa fa-copyright"></i> {{ .Site.Params.copyright | markdownify }}
+        <div class="credit content">
+          {{ site.Params.copyright | markdownify }}
         </div>
       </div>
     </div>
   </div>
 </section>
 {{ end }}
-<!-- =============================
-       End Contact
-    =============================== -->
+<!-- End Contact -->
+
 <a href="#home" class="scroll-up hvr-icon-up"></a>
 
 {{ end }}

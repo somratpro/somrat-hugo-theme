@@ -1,0 +1,91 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="wow fadeInUp" data-wow-duration="1.5s">
+          {{ with .Params.image }}<img src="{{. | absURL}}" alt="image" class="img-fluid w-100 mb-5">{{ end }}
+          <div class="about-me-text mb-4">
+            <h1>{{.Title | markdownify}}</h1>
+          </div>
+          <div class="content">{{.Content}}</div>
+
+          {{ with .Params.tags }}
+          <div class="tags mt-4 content">
+            <i class="fas fa-tags mr-2"></i>
+            {{range $i,$e:= . }}{{if ne $i 0}},{{end}} <a
+              href="{{`tags` | absLangURL}}/{{.|urlize | lower}}">{{.|title}}</a>{{end}}
+          </div>
+          {{ end }}
+
+          <!-- comments -->
+          {{ if .Site.DisqusShortname }}
+          <div class="mt-5">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-white sticky-top wow fadeInUp" data-wow-duration="1.5s" style="top: 80px;">
+          <div class="widget">
+            <h3 class="widget-title">Tags</h3>
+            {{- if isset site.Taxonomies "tags" }}
+            {{- if not (eq (len site.Taxonomies.tags) 0) }}
+            <ul class="list-unstyled widget-list">
+              {{- range $name, $items := site.Taxonomies.tags }}
+              <li><a href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | humanize }}&nbsp;&nbsp;({{ len $items }})</a></li>
+              {{- end }}
+            </ul>
+            {{- end }}
+            {{- end }}
+          </div>
+
+          <div class="widget">
+            <h3 class="widget-title">Related Post</h3>
+            {{ $related := (where site.RegularPages "Section" "blog") | intersect (where site.Pages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+            {{ range first 5 $related }}
+            <ul class="list-unstyled widget-list">
+              <li class="media widget-post align-items-center">
+                {{ if .Params.image }}
+                <a href="{{ .Permalink }}">
+                  <img class="widget-img" src="{{.Params.image | absURL}}" alt="{{.Title}}">
+                </a>
+                {{ end }}
+                <div class="media-body">
+                  <h5 class="h6 mb-0"><a href="{{ .Permalink }}">{{ .Title }}</a></h5>
+                  <small>{{ .PublishDate.Format "January 2, 2006" }}</small>
+                </div>
+              </li>
+            </ul>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}
+  style="{{.Params.custom_css | safeCSS}}">
+  <div class="container wow fadeInUp" data-wow-duration="1.5s">
+    <h1 class="text-center mb-5">{{ .Title | markdownify }}</h1>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="wow fadeInUp" data-wow-duration="1.5s">
+          {{ with .Params.image }}<img src="{{. | absURL}}" alt="image" class="img-fluid w-100 mb-5">{{ end }}
+          <div class="about-me-text mb-4">
+            <h1>{{.Title | markdownify}}</h1>
+          </div>
+          <div class="content">{{.Content}}</div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-white sticky-top wow fadeInUp" data-wow-duration="1.5s" style="top: 80px;">
+          <ul class="list-unstyled">
+            <li class="media mb-4">
+              <i class="mt-1 fas fa-calendar h2"></i>
+               <div class="ml-3">
+                 <h4>Date</h4>
+                 <div class="content">{{.PublishDate.Format "02 Jan, 2006"}}</div>
+               </div>
+             </li>
+             <li class="media mb-4">
+               <i class="mt-1 fas fa-folder h2"></i>
+                <div class="ml-3">
+                  <h4>Categories</h4>
+                  <div class="content">{{range $i,$e:= .Params.categories }}{{if ne $i 0}},{{end}} {{.|title}}{{end}}</div>
+                </div>
+              </li>
+            {{ range .Params.project_info }}
+            <li class="media mb-4">
+             {{ with .icon}}<i class="mt-1 {{.}} h2"></i>{{ end }}
+              <div class="ml-3">
+                <h4>{{.name | markdownify}}</h4>
+                <div class="content">{{.content | markdownify}}</div>
+              </div>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

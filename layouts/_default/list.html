@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+<!-- checking blog -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}
+  style="{{.Params.custom_css | safeCSS}}">
+  <div class="container">
+    <h1 class="wow fadeInUp text-center mb-5" data-wow-duration="1.5s">{{ .Title }}</h1>
+    <div class="row wow fadeInUp" data-wow-duration="1.5s">
+      {{ $paginator:= .Paginate .Data.Pages }}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card">
+          {{ if .Params.image }} <a class="card-img-wrapper" href="{{.Permalink}}"><img
+              src="{{.Params.image | absURL }}" alt="{{.Title}}" class="card-img-top"></a> {{ end }}
+          <div class="card-body">
+            <h4 class="mb-2"><a class="card-title" href="{{.Permalink}}">{{.Title}}</a></h4>
+            <p class="card-text">{{.Summary}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+      <div class="col-12">
+        {{ template "_internal/pagination.html" . }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- regular page -->
+{{ else }}
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}
+  style="{{.Params.custom_css | safeCSS}}">
+  <div class="container wow fadeInUp" data-wow-duration="1.5s">
+    <h1 class="text-center mb-5">{{ .Title | markdownify }}</h1>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

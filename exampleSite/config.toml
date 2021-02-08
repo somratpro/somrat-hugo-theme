@@ -2,8 +2,24 @@
 baseURL = "https://examplesite.com"
 title = "Somrat | Hugo Portfolio Template"
 theme = "somrat"
+# post pagination
+paginate = "6"
+# post excerpt
+summaryLength = "10"
 # disable language
-disableLanguages = [] # desable language from here
+disableLanguages = [] # disable language from here
+# google analutics
+googleAnalytics = "" # example : UA-123-45
+# disqus short name
+disqusShortname = "" # get your shortname form here : https://disqus.com
+
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML"]
+
+[markup.goldmark.renderer]
+unsafe= true
 
 ############################# Plugins ##############################
 
@@ -11,7 +27,9 @@ disableLanguages = [] # desable language from here
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
-link = "plugins/fontawesome/font-awesome.min.css"
+link = "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
 [[params.plugins.css]]
 link = "plugins/hover/hover.css"
 [[params.plugins.css]]
@@ -22,8 +40,6 @@ link = "plugins/owl-carousel/owl.carousel.min.css"
 link = "plugins/owl-carousel/owl.theme.default.min.css"
 [[params.plugins.css]]
 link = "plugins/text-animation/text-animation.css"
-[[params.plugins.css]]
-link = "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap"
 
 # JS Plugins
 [[params.plugins.js]]
@@ -37,58 +53,22 @@ link = "plugins/text-animation/text-animation.js"
 [[params.plugins.js]]
 link = "plugins/jquery.waypoints.min.js"
 [[params.plugins.js]]
-link = "plugins/filterizr/jquery.filterizr.min.js"
+link = "plugins/shuffle/shuffle.min.js"
 [[params.plugins.js]]
 link = "plugins/magnific-popup/jquery.magnific-popup.min.js"
 [[params.plugins.js]]
 link = "plugins/owl-carousel/owl.carousel.min.js"
 
 
-############################## navigation ###############################
-
-# main menu
-[[menu.main]]
-name = "Home"
-URL = "#home"
-weight = 1
-
-[[menu.main]]
-name = "About me"
-URL = "#about"
-weight = 2
-
-[[menu.main]]
-name = "Service"
-URL = "#service"
-weight = 3
-
-[[menu.main]]
-name = "Portfolio"
-URL = "#portfolio"
-weight = 4
-
-[[menu.main]]
-name = "Testimonial"
-URL = "#testimonial"
-weight = 5
-
-[[menu.main]]
-name = "Contact"
-URL = "#contact"
-weight = 6
-
-
 #################### default parameters ################################
 [params]
+favicon = "images/favicon.png"
 logo_light = "images/logo.png"
 logo_dark = "images/logo-dark.png"
+logo_width = "150px"
 # Meta data
 description = "This is meta description"
 author = "somrat"
-# contact form action
-contact_form_action = "" # contact form works with https://formspree.io
-# Google Analitycs
-google_analitycs_id = "" # your id
 
 # Preloader
 [params.preloader]
@@ -97,24 +77,24 @@ preloader = "images/preloader.gif" # use jpg, png, svg or gif format.
   
 ############################# social site ########################
 [[params.social]]
-icon = "fa-facebook-f" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-link = "https://www.facebook.com/somrat.mac"
+icon = "fab fa-facebook-f"
+link = "https://www.facebook.com/somratpro"
 
 [[params.social]]
-icon = "fa-twitter" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-link = "https://twitter.com/somrat_37"
+icon = "fab fa-twitter"
+link = "https://twitter.com/somratpro"
 
 [[params.social]]
-icon = "fa-instagram" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-link = "https://www.instagram.com/somrat_sorkar/"
+icon = "fab fa-instagram"
+link = "https://www.instagram.com/somratpro"
 
 [[params.social]]
-icon = "fa-github" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-link = "https://github.com/Somrat37"
+icon = "fab fa-github"
+link = "https://github.com/somratpro"
 
 [[params.social]]
-icon = "fa-linkedin" # fontawesome icon 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-link = "https://www.linkedin.com/in/somrat-sorkar-872581158/"
+icon = "fab fa-linkedin"
+link = "https://www.linkedin.com/in/somratpro"
 
 
 ################################### English language #####################################
@@ -128,6 +108,50 @@ home = "Home"
 copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
 
 
+################# english navigation ##################
+
+# main menu
+[[Languages.en.menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[Languages.en.menu.main]]
+name = "About me"
+pre = "#"
+url = "about"
+weight = 2
+
+[[Languages.en.menu.main]]
+name = "Service"
+pre = "#"
+url = "service"
+weight = 3
+
+[[Languages.en.menu.main]]
+name = "Portfolio"
+pre = "#"
+url = "portfolio"
+weight = 4
+
+[[Languages.en.menu.main]]
+name = "Testimonial"
+pre = "#"
+url = "testimonial"
+weight = 5
+
+[[Languages.en.menu.main]]
+name = "Contact"
+pre = "#"
+url = "contact"
+weight = 6
+
+[[Languages.en.menu.main]]
+name = "Blog"
+url = "blog"
+weight = 7
+
+
 ################################### French language #####################################
 [Languages.fr]
 languageName = "Fr"
@@ -137,3 +161,42 @@ weight = 2
 home = "Accueil"
 # copyright
 copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
+
+
+################# english navigation ##################
+
+# main menu
+[[Languages.fr.menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[Languages.fr.menu.main]]
+name = "About me"
+pre = "#"
+url = "about"
+weight = 2
+
+[[Languages.fr.menu.main]]
+name = "Service"
+pre = "#"
+url = "service"
+weight = 3
+
+[[Languages.fr.menu.main]]
+name = "Portfolio"
+pre = "#"
+url = "portfolio"
+weight = 4
+
+[[Languages.fr.menu.main]]
+name = "Testimonial"
+pre = "#"
+url = "testimonial"
+weight = 5
+
+[[Languages.fr.menu.main]]
+name = "Contact"
+pre = "#"
+url = "contact"
+weight = 6

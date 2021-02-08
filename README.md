@@ -1,6 +1,6 @@
 # Somrat - A unique hugo portfolio template
 
-It's a unique portfolio template that made your portfolio website looks great, This is a landing page template powerd by bootstrap.
+It's a unique portfolio template that made your portfolio website looks great, This is a landing page template powered by bootstrap.
 
 ## Table of Contents
 
@@ -29,13 +29,13 @@ It's a unique portfolio template that made your portfolio website looks great, T
 ## Quick Start
 Quick start options:
 
-- Clone the repo: `git clone https://github.com/Somrat37/somrat.git`.
-- [Download from Github](https://github.com/Somrat37/somrat/archive/master.zip).
+- Clone the repo: `git clone https://github.com/somratpro/somrat.git`.
+- [Download from Github](https://github.com/somratpro/somrat/archive/master.zip).
 
 ## Installation
 
 ```
-$ git clone git@github.com:Somrat37/somrat.git
+$ git clone git@github.com:somratpro/somrat.git
 $ cd somrat/exampleSite/
 $ hugo server --themesDir ../..
 ```
