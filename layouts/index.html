@@ -2,7 +2,8 @@
 
 <!-- Start Header -->
 {{ with .GetPage "banner" }}
-<section class="header {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="home">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="header {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="home">
   <div class="logo">
     <img class="img-fluid" src="{{ site.Params.logo_light | relURL }}" alt="{{ site.Title }}">
   </div>
@@ -176,7 +177,8 @@
 
 <!-- Start About Me -->
 {{ with .GetPage "about" }}
-<section class="about-me {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="about">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="about-me {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="about">
   <div class="container">
     <div class="row about-me-holder">
       <div class="col-lg-6 col-md-6 col-sm-6 about-me-text d-flex align-self-center">
@@ -244,7 +246,8 @@
 
 <!-- Start Services -->
 {{ with .GetPage "service" }}
-<section class="services {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="service">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="services {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="service">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto col-sm-10">
@@ -273,7 +276,8 @@
 
 <!-- call to action -->
 {{ with .GetPage "call-to-action" }}
-<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}'); {{.Params.custom_css | safeCSS}}">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}');">
   <div class="container position-relative z-index-9">
     <h1>{{ .Title | markdownify }}</h1>
     {{ with .Content }}<div class="text-white content">{{ . | markdownify }}</div> {{ end }}
@@ -289,7 +293,8 @@
 
 <!-- Start Portfolio -->
 {{ with .GetPage "portfolio"}}
-<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="portfolio">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="portfolio">
   <div class="container-fluid text-center">
     <div class="row portfolio-holder text-left">
       <div class="col-12 text-center">
@@ -347,7 +352,8 @@
 
 <!-- Start Testimonials -->
 {{ with .GetPage "testimonial"}}
-<section class="testimonials {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}" id="testimonial">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="testimonials {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="testimonial">
   <div class="container">
     <div class="row">
       <div class="testimonials-container col-lg-8 offset-lg-2">
@@ -373,7 +379,8 @@
 
 <!-- funfacts -->
 {{ with .GetPage "funfacts"}}
-<section class="wow fadeInUp section-sm {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="{{.Params.custom_css | safeCSS}}">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="wow fadeInUp section-sm {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s">
   <div class="container position-relative z-index-9">
     {{ with .Title}}
     <div class="services-heading">
@@ -397,7 +404,8 @@
 
 <!-- Start Contact -->
 {{ with .GetPage "contact"}}
-<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | absURL}}'); {{.Params.custom_css | safeCSS}}" id="contact">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | absURL}}');" id="contact">
   <div class="container">
     <div class="row">
       <div class="contact-holder col-lg-8 offset-lg-2 col-sm-8 offset-sm-2">

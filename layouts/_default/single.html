@@ -3,7 +3,8 @@
 <!-- checking blog -->
 {{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags") }}
 
-<section class="section">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="section {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-4 mb-lg-0">
@@ -72,8 +73,8 @@
 
 <!-- regular page -->
 {{ else }}
-<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}
-  style="{{.Params.custom_css | safeCSS}}">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}>
   <div class="container wow fadeInUp" data-wow-duration="1.5s">
     <h1 class="text-center mb-5">{{ .Title | markdownify }}</h1>
     <div class="row">
