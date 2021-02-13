@@ -21,10 +21,8 @@
   <link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
 
   <!-- Custom stylesheet -->
-  {{ if fileExists "css/custom.css" }}
   {{ $custom := resources.Get "css/custom.css" | minify }}
   <link rel="stylesheet" href="{{ $custom.Permalink }}" media="screen">
-  {{ end }}
 
   <!--Favicon-->
   <link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">

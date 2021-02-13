@@ -1,6 +1,7 @@
 {{ define "main" }}
 
-<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="{{.Params.custom_css | safeCSS}}">
+<style>{{.Params.custom_css | safeCSS}}</style>
+<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}}>
   <div class="container-fluid text-center">
     <div class="row portfolio-holder text-left">
       <div class="col-12 text-center">
