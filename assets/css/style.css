@@ -177,7 +177,7 @@ body {
 .logo {
   position: absolute;
   z-index: 10;
-  top: 2px;
+  top: 10px;
   left: 40px;
 }
 
