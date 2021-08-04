@@ -1,14 +1,14 @@
 ---
-title : "I'm Somrat Sorkar"
+title : "I'm Antoine Dubuis"
 # full screen navigation
-first_name : "MacGyver"
-last_name : "SOMRAT"
+first_name : "Antoine"
+last_name : "DUBUIS"
 bg_image : "images/backgrounds/full-nav-bg.jpg"
 # animated text loop
 occupations:
-- "Web Developer"
-- "Graphic Designer"
-- "Database Manager"
+- "Data Scientist"
+- "Software Developer"
+- "Machine Learning Engineer"
 
 # slider background image loop
 slider_images:
