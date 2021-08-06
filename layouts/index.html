@@ -200,10 +200,40 @@
           <li>
             <div class="single-experience">
               <h4>{{ .name | markdownify }}</h4>
-              <div class="row">
-              {{ with .duration }} <div class="col"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
-              {{ with .company }} <div class="col"><i class="fas fa-map-marker-alt"></i> {{ . | markdownify }}</div> {{ end }}
+              <div class="row mb-1">
+              {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
+              </div>
+              <div class="row mb-3"> 
+              {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
+              {{ with .location }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"><i class="fas fa-map-marker-alt"></i> {{ . | markdownify }}</div> {{ end }}
           <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
+              </div>
+              {{ range .content_list }}
+                  <p>{{ .c }}</p>
+              {{ end }}
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+      {{ end }}
+
+      {{ with .Params.education }}
+      {{ if .enable }}
+        <h3>{{ .title }}</h3>
+        <ul class="experience-chart">
+          {{ range .experience_list }}
+          <li>
+            <div class="single-experience">
+              <h4>{{ .name | markdownify }}</h4>
+              <div class="row mb-1">
+              {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
+              </div>
+              <div class="row mb-3"> 
+              {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
+              {{ with .location }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"><i class="fas fa-map-marker-alt"></i> {{ . | markdownify }}</div> {{ end }}
+          <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
+              </div>
               {{ range .content_list }}
                   <p>{{ .c }}</p>
               {{ end }}
@@ -214,6 +244,7 @@
       </div>
       {{ end }}
       {{ end }}
+
 
       <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
       {{ with .Params.skill }}
