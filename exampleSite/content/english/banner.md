@@ -1,8 +1,8 @@
 ---
-title : "I'm Somrat Sorkar"
+title : "Data Nerd"
 # full screen navigation
-first_name : "MacGyver"
-last_name : "SOMRAT"
+first_name : "Leydi"
+last_name : "van den Braken"
 bg_image : "images/backgrounds/full-nav-bg.jpg"
 # animated text loop
 occupations:

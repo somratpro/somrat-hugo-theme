@@ -164,6 +164,7 @@ body {
   background-attachment: fixed;
   position: relative;
   height: 100%;
+  height: calc(100vh - 55px);
   min-height: 420px;
 }
 
