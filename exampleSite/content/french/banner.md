@@ -7,8 +7,8 @@ occupations:
 - "Data Scientist"
 - "Software Developer"
 - "Machine Learning Engineer"
-- "Aspiring Mycologist"
-- "Enthusiast Alpinist"
+- "Mycologue en Herbe"
+- "Apliniste Enthousiaste"
 
 # slider background image loop
 slider_images:
@@ -19,7 +19,7 @@ slider_images:
 # button
 button:
   enable : true
-  label : "HIRE ME"
+  label : "CONTACTEZ MOI"
   link : "#contact"
 
 

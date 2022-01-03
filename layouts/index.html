@@ -55,7 +55,7 @@
               <ul class="list-inline fullscreen-nav-holder">
                 {{ range site.Menus.main }}
                 <li><a class="text-uppercase"
-                    href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
+                       href="{{if .Pre}}{{site.BaseURL | absLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
                 </li>
                 {{ end }}
               </ul>
@@ -121,7 +121,7 @@
           </div>
         </a>
         <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
+                                                                                    src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
         </div>
         <div class="menu-slider">
           <nav>
@@ -184,7 +184,7 @@
         </div>
       </div>
       {{ with .Params.image }}
-      <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
+      <div class="col-lg-6 col-sm-6 col-12 about-me-images wow fadeInUp" data-wow-duration="1.5s">
         <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
       </div>
       {{ end }}
@@ -194,48 +194,48 @@
       {{ with .Params.experience }}
       {{ if .enable }}
       <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
-        <h3>{{ .title }}</h3>
+        <h3 class="title">{{ .title }}</h3>
         <ul class="experience-chart">
           {{ range .experience_list }}
           <li>
             <div class="single-experience">
               <h4>{{ .name | markdownify }}</h4>
               <div class="row mb-1">
-              {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
+                {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
               </div>
               <div class="row mb-3"> 
-              {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
+                {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
               {{ with .location }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"><i class="fas fa-map-marker-alt"></i> {{ . | markdownify }}</div> {{ end }}
-          <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
+              <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
               </div>
               {{ range .content_list }}
-                  <p>{{ .c }}</p>
+              <p>{{ .c }}</p>
               {{ end }}
             </div>
           </li>
           {{ end }}
         </ul>
-      {{ end }}
-      {{ end }}
+        {{ end }}
+        {{ end }}
 
-      {{ with .Params.education }}
-      {{ if .enable }}
-        <h3>{{ .title }}</h3>
+        {{ with .Params.education }}
+        {{ if .enable }}
+        <h3 class="title">{{ .title }}</h3>
         <ul class="experience-chart">
           {{ range .experience_list }}
           <li>
             <div class="single-experience">
               <h4>{{ .name | markdownify }}</h4>
               <div class="row mb-1">
-              {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
+                {{ with .company }} <div class="col"> <i class="fas fa-building"></i></i> {{ . | markdownify }}</div> {{ end }}
               </div>
               <div class="row mb-3"> 
-              {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
+                {{ with .duration }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"> <i class="fas fa-calendar-alt"></i></i> {{ . | markdownify }}</div> {{ end }}
               {{ with .location }} <div class="col-12 col-xl-6 col-md-12 col-sm-12 col-lg-12"><i class="fas fa-map-marker-alt"></i> {{ . | markdownify }}</div> {{ end }}
-          <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
+              <!-- {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }} -->
               </div>
               {{ range .content_list }}
-                  <p>{{ .c }}</p>
+              <p>{{ .c }}</p>
               {{ end }}
             </div>
           </li>
@@ -247,20 +247,39 @@
 
 
       <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
-      {{ with .Params.skill }}
-      {{ if .enable }}
-        <h3>{{ .title }}</h3>
-        <div style="display: block">
-          {{ range .skill_list }}
-            <span style="font-size: 1.1em;margin-left: 5px;margin-bottom: 5px;"  class="badge badge-secondary"> {{ .name }}</span>
+        {{ with .Params.achievements }}
+        {{ if .enable }}
+        <h3 class="title">{{ .title }}</h3>
+        <div class='row mb-2'>
+          {{ range .achivements_list}}
+          <div class="achievement col-12 col-xl-12 col-md-12 col-sm-12 col-lg-12 mb-1">
+            <h4><i class="fas {{.icon}}"></i>
+              {{ .name }}</h4>
+            <p>{{.desc}}</p>
+          </div>
           {{ end }}
         </div>
-      {{ end }}
-      {{ end }}
-      <br>
-      {{ with .Params.lang }}
-      {{ if .enable }}
-        <h3>{{ .title }}</h3>
+        {{ end }}
+        {{ end }}
+
+
+        {{ with .Params.skills }}
+        {{ if .enable }}
+        {{ range .skills_list }}
+        <h3 class="title">{{ .title }}</h3>
+        <div class="row-12 mb-3">
+          {{ range .skill_list }}
+          <span style="font-size: 1.1em;"  class="m-1 badge badge-secondary"> {{ .name }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+
+        {{ with .Params.lang }}
+        {{ if .enable }}
+        <h3 class="title">{{ .title }}</h3>
         <div class="skill-progress-bar">
           {{ range .skill_list }}
           <div class="clearfix">
@@ -276,9 +295,9 @@
       {{ end }}
       {{ end }}
 
-      </div>
- 
     </div>
+
+  </div>
   </div>
 </section>
 {{ end }}
@@ -315,6 +334,7 @@
 <!-- End Services -->
 
 <!-- call to action -->
+<!--
 {{ with .GetPage "call-to-action" }}
 <style>{{.Params.custom_css | safeCSS}}</style>
 <section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}');">
@@ -329,9 +349,10 @@
   </div>
 </section>
 {{ end }}
+-->
 <!-- end call to action -->
 
-<!-- Start Portfolio -->
+<!-- Start Portfolio 
 {{ with .GetPage "portfolio"}}
 <style>{{.Params.custom_css | safeCSS}}</style>
 <section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="portfolio">
@@ -362,7 +383,7 @@
         <div class="row filtr-wrapper wow fadeInUp list" data-wow-duration="1.5s">
           {{ range first 6 .Data.Pages }}
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item"
-            data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
+               data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
             <div class="item-holder">
               <a class="image-pop" href="{{ .Params.image | absURL }}" title="{{ .Title | markdownify }}">
                  <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}">
@@ -388,37 +409,13 @@
   </div>
 </section>
 {{ end }}
+-->
+
 <!-- End Portfolio -->
 
-<!-- Start Testimonials -->
-{{ with .GetPage "testimonial"}}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section class="testimonials {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="testimonial">
-  <div class="container">
-    <div class="row">
-      <div class="testimonials-container col-lg-8 offset-lg-2">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title | markdownify }}</h1>
-        <div class="owl-carousel owl-theme wow fadeInUp" data-wow-duration="1.5s">
-          {{ range .Params.testimonial_slider }}
-          <div class="single-testimonial">
-            <div class="testimonial-holder">
-              <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
-              <h2>{{ .name }}</h2>
-              <span>{{ .designation | markdownify }}</span>
-              <p><i class="fa fa-quote-left"></i> {{ .content | markdownify }} <i class="fa fa-quote-right"></i></p>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-<!-- End Testimonials -->
-
-<!-- funfacts -->
+<!--
 {{ with .GetPage "funfacts"}}
+{{.Params.custom_css | safeCSS}}
 <style>{{.Params.custom_css | safeCSS}}</style>
 <section class="wow fadeInUp section-sm {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s">
   <div class="container position-relative z-index-9">
@@ -440,7 +437,7 @@
   </div>
 </section>
 {{ end }}
-<!-- end funfacts -->
+-->
 
 <!-- Start Contact -->
 {{ with .GetPage "contact"}}
@@ -454,7 +451,7 @@
           <div class="form-container row wow fadeInUp" data-wow-duration="1.5s">
             <div class="form-group col-lg-6">
               <input class="form-control" type="text" name="username" id="username" placeholder="{{.Params.name}}"
-                required>
+                                                                                    required>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-6">
@@ -463,7 +460,7 @@
             </div>
             <div class="form-group col-lg-12">
               <textarea class="form-control" name="message" id="message" rows="12"
-                placeholder="{{.Params.message}}"></textarea>
+                                                                         placeholder="{{.Params.message}}"></textarea>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group col-lg-12 sub-button">

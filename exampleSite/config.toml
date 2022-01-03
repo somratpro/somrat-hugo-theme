@@ -1,6 +1,6 @@
 ######################## default configuration ####################
-baseURL = "https://examplesite.com"
-title = "Antoine Dubuis | Portfolio"
+baseURL = "https://dubuisa.github.io"
+title = "Antoine Dubuis"
 theme = "somrat"
 # post pagination
 paginate = "6"
@@ -68,7 +68,7 @@ logo_dark = "images/logo-dark.png"
 logo_width = "150px"
 # Meta data
 description = "This is meta description"
-author = "somrat"
+author = "dubuisa"
 
 # Preloader
 [params.preloader]
@@ -77,24 +77,16 @@ preloader = "images/preloader.gif" # use jpg, png, svg or gif format.
   
 ############################# social site ########################
 [[params.social]]
-icon = "fab fa-facebook-f"
-link = "https://www.facebook.com/somratpro"
-
-[[params.social]]
-icon = "fab fa-twitter"
-link = "https://twitter.com/somratpro"
-
-[[params.social]]
-icon = "fab fa-instagram"
-link = "https://www.instagram.com/somratpro"
+icon = "fab fa-stack-overflow"
+link = "https://stackoverflow.com/users/4574633/antoine-dubuis?tab=profile"
 
 [[params.social]]
 icon = "fab fa-github"
-link = "https://github.com/somratpro"
+link = "https://github.com/Mrmarx"
 
 [[params.social]]
 icon = "fab fa-linkedin"
-link = "https://www.linkedin.com/in/somratpro"
+link = "https://www.linkedin.com/in/antoinedubuis/"
 
 
 ################################### English language #####################################
@@ -105,7 +97,7 @@ contentDir = "content/english"
 weight = 1
 home = "Home"
 # copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
+copyright = "Copyright &copy; 2021 - Antoine Dubuis"
 
 
 ################# english navigation ##################
@@ -122,23 +114,17 @@ pre = "#"
 url = "about"
 weight = 2
 
-[[Languages.en.menu.main]]
-name = "Service"
-pre = "#"
-url = "service"
-weight = 3
+#[[Languages.en.menu.main]]
+#name = "Service"
+#pre = "#"
+#url = "service"
+#weight = 3
 
-[[Languages.en.menu.main]]
-name = "Portfolio"
-pre = "#"
-url = "portfolio"
-weight = 4
-
-[[Languages.en.menu.main]]
-name = "Testimonial"
-pre = "#"
-url = "testimonial"
-weight = 5
+#[[Languages.en.menu.main]]
+#name = "Portfolio"
+#pre = "#"
+#url = "portfolio"
+#weight = 4
 
 [[Languages.en.menu.main]]
 name = "Contact"
@@ -146,10 +132,10 @@ pre = "#"
 url = "contact"
 weight = 6
 
-[[Languages.en.menu.main]]
-name = "Blog"
-url = "blog"
-weight = 7
+#[[Languages.en.menu.main]]
+#name = "Blog"
+#url = "blog"
+#weight = 7
 
 
 ################################### French language #####################################
@@ -160,40 +146,40 @@ contentDir = "content/french"
 weight = 2
 home = "Accueil"
 # copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [somrat](https://somrat.netlify.com)"
+copyright = "Copyright &copy; 2022 - Antoine Dubuis"
 
 
 ################# english navigation ##################
 
 # main menu
 [[Languages.fr.menu.main]]
-name = "Home"
+name = "Accueil"
 url = "/"
 weight = 1
 
 [[Languages.fr.menu.main]]
-name = "About me"
+name = "A Propos"
 pre = "#"
 url = "about"
 weight = 2
 
 [[Languages.fr.menu.main]]
-name = "Service"
+name = "Services"
 pre = "#"
 url = "service"
 weight = 3
 
-[[Languages.fr.menu.main]]
-name = "Portfolio"
-pre = "#"
-url = "portfolio"
-weight = 4
+#[[Languages.fr.menu.main]]
+#name = "Portfolio"
+#pre = "#"
+#url = "portfolio"
+#weight = 4
 
-[[Languages.fr.menu.main]]
-name = "Testimonial"
-pre = "#"
-url = "testimonial"
-weight = 5
+#[[Languages.fr.menu.main]]
+#name = "Testimonial"
+#pre = "#"
+#url = "testimonial"
+#weight = 5
 
 [[Languages.fr.menu.main]]
 name = "Contact"

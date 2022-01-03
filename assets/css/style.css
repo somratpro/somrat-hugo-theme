@@ -444,7 +444,7 @@ input:checked+label span:last-child {
 
 .full-nav-content {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .name {
@@ -920,6 +920,9 @@ input:checked+label span:last-child {
   font-size: 16px;
 }
 
+.title {
+  margin-bottom : 20px;
+}
 /* ========= Start Experience ======= */
 
 .experience-skill {
@@ -936,7 +939,6 @@ input:checked+label span:last-child {
 .experience-chart {
   list-style: none;
   padding: 0px 0px 0px 6px;
-  margin-top: 40px;
 }
 
 ul.experience-chart li {
@@ -995,10 +997,6 @@ ul.experience-chart h4 {
   margin : 0px; 
 }
 /* ========= Start Skill ======= */
-
-.skill-progress-bar {
-  margin-top: 41px;
-}
 
 .skillbar {
   position: relative;
@@ -2376,3 +2374,12 @@ textarea.form-control::-webkit-input-placeholder,
   object-fit: cover;
   margin-right: 10px;
 }
+
+.achievement p {
+ color: #6f6f6f;
+}
+
+.achievement h4 {
+  color: #4d4d4d;
+}
+

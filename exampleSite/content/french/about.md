@@ -1,5 +1,5 @@
 ---
-title : 'KNOW MORE <br> ABOUT ME'
+title : 'A PROPOS DE MOI'
 image : 'images/backgrounds/portrait.jpg'
 # button
 button:
@@ -10,30 +10,30 @@ button:
 ########################### Achievements #############################
 
 achievements:
-  title :  'ACHIEVEMENTS'
+  title :  'SUCCÈS'
   enable : true
   achivements_list :
-    - name : 'Major of MSc. AI'
+    - name : 'Major de Promotion MSc. IA'
       desc : '5.83/6'
       icon : 'fa-graduation-cap'
 
-    - name : 'All Studies in Foreign Languages'
+    - name : 'Cursus en Langue Étrangères'
       desc : 'MSc., BASc. and Secondary School'
       icon : 'fa-graduation-cap'
       
     - name : 'AI & MLOps Initiatives'
-      desc : 'Cloud Transformation at Groupe Mutuel'
+      desc : 'Cloud Transformation au Groupe Mutuel'
       icon : 'fa-cloud'
 
-    - name : '1 Year Abroad'
-      desc : 'Finland and Iceland'
+    - name : '1 An à l''Étranger'
+      desc : 'Finlande et Islande'
       icon : 'fa-plane'
 
 
 ########################### Experience ##############################
 experience:
   enable : true
-  title : 'EXPERIENCE'
+  title : 'EXPÉRIENCES'
   experience_list:
     # experience item loop
     - name : 'Data Science Lecturer'
@@ -41,8 +41,8 @@ experience:
       location : 'Lausanne'
       duration : 'Mai 2021 - June 2021'
       content_list:
-      - c : 'Lecturer (Data Toolkit, Machine Learning, Data Engineering)'
-      - c : 'Project Advisor (Image Classification & EEG Classification)'
+      - c : 'Conférencier (Data Toolkit, Machine Learning, Data Engineering)'
+      - c : 'Supervisation de projet (Image Classification & EEG Classification)'
 
     # experience item loop
     - name : 'Machine Learning Engineer'
@@ -50,12 +50,12 @@ experience:
       duration : 'July 2020 - Present'
       location : 'Sion'
       content_list:
-      - c : 'Model industrialization on GCP'
-      - c : 'Risk analysis model'
-      - c : 'Invoice processing automation'
+      - c : 'Industrialisation de modèles sur GCP'
+      - c : 'Modèle d''analyse du risque'
+      - c : 'Automatisation du traitement des factures'
    
     # experience item loop
-    - name : 'AI Engineer in Training'
+    - name : 'AI Engineer en Formation'
       company : 'Groupe Mutuel'
       location : 'Sion'
       duration : 'February 2019 - July 2020'
@@ -66,8 +66,8 @@ experience:
       location : 'Sion'
       duration : 'August 2016 - February 2019'
       content_list :
-      - c : 'Modularization of Document Management System'
-      - c : 'Detailed design of architecture specifications'
+      - c : 'Modularisation du système de gestion documentatire'
+      - c : 'Design d''architecture et Spécifications'
 
 ########################### EDUCATION ##############################
 education:
@@ -75,21 +75,18 @@ education:
   title : 'EDUCATION'
   experience_list:
     # experience item loop
-    - name : 'MSc. In Artifical Intelligence'
+    - name : 'MSc. en Intelligence Artificielle'
       company : 'Unidistance / Idiap'
       location : 'Remote'
       duration : 'February 2018 - July 2020'
       content_list:
-      - c : 'Sentiment Analysis on Low-Resource Corporate Data using DL'
-
-
+      - c : 'Analyse de Sentiment sur des données d''entreprise faiblement polarisées'
 
     # experience item loop
     - name : 'BASc. Business Administration'
       company : 'Haaga-Helia UAS'
       location : 'Helsinki'
       duration : '2015 – 2016'
-
 
    # experience item loop
     - name : 'BASc. Business IT'
@@ -110,18 +107,18 @@ skills:
       - name : 'Numpy'
       - name : 'Pandas'
       - name : 'Latex'
-      - name : 'Regex'
       - name : 'R'
       - name : 'Transfer Learning'
       - name : 'NLP'
       - name : 'LightGBM'
       - name : 'Computer Vision'
-      - name : 'Mathematics'
-      - name : 'Statistics'
+      - name : 'Mathématique'
+      - name : 'Statistiques'
       - name : 'Deep Learning'
       - name : 'Shap'
       - name : 'LIME'
       - name : 'Transformer'
+      - name : 'Transfer Learning'
       - name : 'Tesseract'
       - name : 'OpenCV'
       - name : 'PyTorch'
@@ -147,11 +144,12 @@ skills:
       - name : 'GCP'
       - name : 'Azure'
       - name : 'Airflow'
-      - name : 'vi'
+      - name : 'VI'
+      - name : 'Regex'
 
 lang:
   enable : true
-  title : 'LANGUAGES'
+  title : 'LANGAGES'
   skill_list:
     - name : 'French'
       percentage : '100%'
@@ -165,4 +163,4 @@ custom_attributes: ''
 custom_css: ''
 ---
 
-Recently graduated with a master's degree in AI while working at Groupe Mutuel , I have professional experience in software development and applying machine learning to concrete projects.
+Récemment diplômé d'un master en IA ,tout en travaillant au Groupe Mutuel, je possède une solide expérience professionnelle dans le développement de logiciels ainsi que dans l'application du machine learning dans des projets concrets.
