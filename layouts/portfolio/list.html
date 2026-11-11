@@ -6,42 +6,15 @@
     <div class="row portfolio-holder text-left">
       <div class="col-12 text-center">
         <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title }}</h1>
-        <div class="filtering wow fadeInUp" data-wow-duration="1.5s">
-          <div class="btn-group btn-group-toggle portfolio-navigation" data-toggle="buttons">
-            <label class="btn btn-sm btn-primary active hvr-sweep-to-right">
-              <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
-            </label>
-            {{ $categories := slice }}
-            {{ range .Data.Pages }}
-            {{ range .Params.categories }}
-            {{ $categories = $categories | append . }}
-            {{ end }}
-            {{ end }}
-            {{ range ( $categories | uniq ) }}
-            <label class="btn btn-sm btn-primary hvr-sweep-to-right">
-              <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . | humanize }}
-            </label>
-            {{ end }}
-          </div>
-        </div>
       </div>
       <div class="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto">
-        <div class="row filtr-wrapper wow fadeInUp list" data-wow-duration="1.5s">
+        <div class="row wow fadeInUp" data-wow-duration="1.5s">
           {{ range .Data.Pages }}
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item"
-            data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
-            <div class="item-holder">
-              <a class="image-pop" href="{{ .Params.image | absURL }}" title="{{ .Title | markdownify }}">
-                 <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}">
-              </a>
-              <div class="item-caption">
-                <h2 class="mt-2"><a class="text-white" href="{{.Permalink}}">{{ .Title | markdownify }}</a></h2>
-                {{ range .Params.categories }}
-                <p class="mb-0 text-light">{{ . | title }}</p>
-                {{ end }}
-                <div class="item-created text-light">{{ .PublishDate.Format "02 Jan, 06" }}</div>
-              </div>
-            </div>
+          <div class="col-lg-4 col-md-6 col-12 mb-4">
+            <a class="sn-project-tile" href="{{ .Permalink }}">
+              <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}">
+              <span class="sn-tile-caption">{{ .Title | markdownify }} <i class="fas fa-arrow-right"></i></span>
+            </a>
           </div>
           {{ end }}
         </div>

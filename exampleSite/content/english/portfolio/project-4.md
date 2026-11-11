@@ -1,5 +1,5 @@
 ---
-title: "e- Marketplace"
+title: "e-MarketPlace"
 date: 2021-12-02T12:14:34+06:00
 image: "images/portfolio/emarket.jpg"
 categories: ["Data Science", "Machine Learning"]

@@ -7,6 +7,12 @@
   <div class="container">
     <h1 class="wow fadeInUp text-center mb-5" data-wow-duration="1.5s">{{ .Title }}</h1>
     <div class="row wow fadeInUp" data-wow-duration="1.5s">
+      {{ if and (eq (len .Data.Pages) 0) .Params.coming_soon }}
+      <div class="col-lg-8 mx-auto text-center sn-soon-page">
+        <span class="sn-soon-badge">{{ .Params.coming_soon.heading }}</span>
+        <p>{{ .Params.coming_soon.text }}</p>
+      </div>
+      {{ end }}
       {{ $paginator:= .Paginate .Data.Pages }}
       {{ range $paginator.Pages }}
       <div class="col-lg-4 col-sm-6 mb-4">

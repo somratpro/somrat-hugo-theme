@@ -1,6 +1,6 @@
 ######################## default configuration ####################
 baseURL = "https://examplesite.com"
-title = "Kushagra | Portfolio"
+title = "Kushagra Singh | ServiceNow Developer"
 theme = "somrat"
 # post pagination
 paginate = "6"
@@ -63,8 +63,10 @@ link = "plugins/owl-carousel/owl.carousel.min.js"
 #################### default parameters ################################
 
 # Meta data
-description = "This is meta description"
-author = "somrat"
+[params]
+copyright = "© 2026 Kushagra Singh"
+description = "Kushagra Singh — ServiceNow Developer and Consultant at KPMG India. SecOps Vulnerability Response, IRM/GRC, CMDB, integrations and GenAI on the Now Platform."
+author = "Kushagra Singh"
 
 # Preloader
 [params.preloader]
@@ -75,20 +77,16 @@ preloader = "images/preloader.gif" # use jpg, png, svg or gif format.
 
 
 [[params.social]]
-icon = "fab fa-twitter"
-link = "https://twitter.com/Kushagr42242918"
-
-[[params.social]]
-icon = "fab fa-instagram"
-link = "https://www.instagram.com/kushagra___singh"
+icon = "fab fa-linkedin-in"
+link = "https://www.linkedin.com/in/kushagra-singh772/"
 
 [[params.social]]
 icon = "fab fa-github"
 link = "https://github.com/kushagrasingh772"
 
 [[params.social]]
-icon = "fab fa-linkedin"
-link = "https://www.linkedin.com/in/kushagra-singh-16ba661a5"
+icon = "fab fa-kaggle"
+link = "https://www.kaggle.com/perkymaster"
 
 
 ################################### English language #####################################
@@ -111,66 +109,36 @@ url = "/"
 weight = 1
 
 [[Languages.en.menu.main]]
-name = "About me"
+name = "About"
 pre = "#"
 url = "about"
 weight = 2
 
 [[Languages.en.menu.main]]
-name = "Services"
+name = "Experience"
 pre = "#"
-url = "service"
+url = "experience"
 weight = 3
+
+[[Languages.en.menu.main]]
+name = "Skills"
+pre = "#"
+url = "skills"
+weight = 4
 
 [[Languages.en.menu.main]]
 name = "Projects"
 pre = "#"
 url = "portfolio"
-weight = 4
-
-
-[[Languages.en.menu.main]]
-name = "Contact and Blog"
-url = "blog"
-weight = 7
-
-
-
-
-################# english navigation ##################
-
-# main menu
-[[Languages.fr.menu.main]]
-name = "Home"
-url = "/"
-weight = 1
-
-[[Languages.fr.menu.main]]
-name = "About me"
-pre = "#"
-url = "about"
-weight = 2
-
-[[Languages.fr.menu.main]]
-name = "Service"
-pre = "#"
-url = "service"
-weight = 3
-
-[[Languages.fr.menu.main]]
-name = "Portfolio"
-pre = "#"
-url = "portfolio"
-weight = 4
-
-[[Languages.fr.menu.main]]
-name = "Testimonial"
-pre = "#"
-url = "testimonial"
 weight = 5
 
-[[Languages.fr.menu.main]]
-name = "Contact"
+[[Languages.en.menu.main]]
+name = "Certifications"
 pre = "#"
-url = "contact"
+url = "certifications"
 weight = 6
+
+[[Languages.en.menu.main]]
+name = "Contact & Blog"
+url = "blog"
+weight = 7

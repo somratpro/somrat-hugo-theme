@@ -1,27 +1,28 @@
 ---
 title : "I'm Kushagra Singh"
+eyebrow : "Consultant @ KPMG India · ServiceNow"
 # full screen navigation
 first_name : "Kushagra"
 last_name : "Singh"
-bg_image : "images/backgrounds/bgbg.jpg"
+bg_image : "images/backgrounds/nav-bg.jpg"
 # animated text loop
 occupations:
 - "ServiceNow Developer"
-- "Data Analyst"
-- "BlockChain Developer"
-- "Software Engineer"
+- "SecOps · Vulnerability Response"
+- "IRM / GRC & CMDB Engineer"
+- "GenAI on the Now Platform"
 
 # slider background image loop
 slider_images:
-- "images/slider/slider-3.jpg"
-- "images/slider/ks.jpg"
-- "images/slider/back5.jpeg"
+- "images/slider/hero-aurora.jpg"
+- "images/slider/hero-graph.jpg"
+- "images/slider/hero-signal.jpg"
 
 # button
 button:
-  enable : false
-  label : "HIRE ME"
-  link : "#"
+  enable : true
+  label : "SEE MY WORK"
+  link : "#experience"
 
 
 # custom style

@@ -1,13 +1,13 @@
 
 ---
-title: "Decentra Med"
+title: "D-Med"
 date: 2022-05-24T12:14:34+06:00
 image: "images/portfolio/dmed.jpg"
 categories: ["Blockchain","Development"]
 description: "This is meta description."
 draft: false
 project_info:
-- name: "DecentraMed"
+- name: "D-Med"
   icon: "fas fa-user"
   content: "Kushagra Singh"
 - name: "Project Link"

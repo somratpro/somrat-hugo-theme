@@ -11,7 +11,7 @@
           <img class="img-fluid" width="{{site.Params.logo_width}}" src="{{ site.Params.logo_dark | absURL}}"
             alt="{{ site.Title }}">
           {{ else }}
-          {{site.Title}}
+          <span class="logo-mark">KS<i>.</i></span>
           {{ end }}
         </a>
         {{ range site.Menus.main }}
@@ -50,8 +50,8 @@
             <span></span>
           </div>
         </a>
-        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
+        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}">{{ with site.Params.logo_dark }}<img class="img-fluid"
+              src="{{ . | absURL }}" alt="{{ site.Title }}">{{ else }}<span class="logo-mark">KS<i>.</i></span>{{ end }}</a>
         </div>
         <div class="menu-slider">
           <nav>
@@ -83,7 +83,7 @@
             {{ end }}
             <ul class="mobile-menu-icons list-inline">
               {{ range site.Params.social }}
-              <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+              <li><a href="{{ .link | safeURL }}" target="_blank" rel="noopener"><i class="{{ .icon }}"></i></a></li>
               {{ end }}
             </ul>
           </nav>

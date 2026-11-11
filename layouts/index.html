@@ -5,7 +5,7 @@
 <style>{{.Params.custom_css | safeCSS}}</style>
 <section class="header {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="home">
   <div class="logo">
-    <img class="img-fluid" src="{{ site.Params.logo_light | relURL }}" alt="{{ site.Title }}">
+    {{ with site.Params.logo_light }}<img class="img-fluid" src="{{ . | relURL }}" alt="{{ site.Title }}">{{ else }}<span class="logo-mark">KS<i>.</i></span>{{ end }}
   </div>
   <div class="slider-prev-button slider-button">
     <i class="fa fa-angle-left"></i>
@@ -22,6 +22,7 @@
     <div class="row content">
       <div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 head-container">
         <div class="head-holder">
+          {{ with .Params.eyebrow }}<div class="hero-eyebrow"><span class="hero-dot"></span>{{ . }}</div>{{ end }}
           <h1 class="introduction">{{ .Title | markdownify | emojify }}</h1>
           <div class="animated-text">
             <strong class="cd-headline clip">
@@ -34,7 +35,7 @@
           </div>
           {{ with .Params.button }}
           {{ if .enable }}
-          <a class="hireMe" href="{{ .link | relURL}}">{{ .label }}</a>
+          <a class="hireMe" href="{{ .link }}">{{ .label }}</a>
           {{ end }}
           {{ end }}
         </div>
@@ -72,7 +73,7 @@
             <div class="full-nav-icon-holder">
               <ul class="full-nav-icons list-inline">
                 {{ range site.Params.social }}
-                <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+                <li><a href="{{ .link | safeURL }}" target="_blank" rel="noopener"><i class="{{ .icon }}"></i></a></li>
                 {{ end }}
               </ul>
             </div>
@@ -129,8 +130,8 @@
             <span></span>
           </div>
         </a>
-        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
+        <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}">{{ with site.Params.logo_dark }}<img class="img-fluid"
+              src="{{ . | absURL }}" alt="{{ site.Title }}">{{ else }}<span class="logo-mark">KS<i>.</i></span>{{ end }}</a>
         </div>
         <div class="menu-slider">
           <nav>
@@ -164,7 +165,7 @@
             {{ end }}
             <ul class="mobile-menu-icons list-inline">
               {{ range site.Params.social }}
-              <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+              <li><a href="{{ .link | safeURL }}" target="_blank" rel="noopener"><i class="{{ .icon }}"></i></a></li>
               {{ end }}
             </ul>
           </nav>
@@ -181,278 +182,170 @@
 <section class="about-me {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="about">
   <div class="container">
     <div class="row about-me-holder">
-      <div class="col-lg-6 col-md-6 col-sm-6 about-me-text d-flex align-self-center">
+      <div class="col-lg-7 col-md-7 col-12 about-me-text d-flex align-self-center">
         <div class="text-holder wow fadeInUp" data-wow-duration="1.5s">
           <h1>{{ .Title | markdownify }}</h1>
-          <div class="content">{{ .Content | markdownify | emojify }}</div>
+          <div class="content">{{ .Content }}</div>
+          {{ with .Params.focus }}
+          <ul class="focus-list list-unstyled">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
           {{ with .Params.button }}
           {{ if .enable }}
-          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang"> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
+          <a href="{{ .link | absURL }}" target="_blank" rel="noopener" class="download-cv">{{ .label }} <i class="fas fa-arrow-down"></i></a>
           {{ end }}
           {{ end }}
         </div>
       </div>
       {{ with .Params.image }}
-      <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
-        <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
+      <div class="col-lg-5 col-md-5 col-12 about-me-images wow fadeInUp" data-wow-duration="1.5s">
+        <div class="portrait"><img class="img-fluid" src="{{ . | absURL }}" alt="Kushagra Singh"></div>
       </div>
-      {{ end }}
-    </div>
-
-    <div class="row experience-skill">
-      {{ with .Params.experience }}
-      {{ if .enable }}
-      <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
-        <h3>{{ .title }}</h3>
-        <ul class="experience-chart">
-          {{ range .experience_list }}
-          <li>
-            <div class="single-experience">
-              <h4>{{ .name | markdownify }}</h4>
-              {{ with .company }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
-            </div>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
-      {{ end }}
-
-      {{ with .Params.skill }}
-      {{ if .enable }}
-      <div class="col-lg-6 col-sm-6 col-11 skill wow fadeInUp" data-wow-duration="1.5s">
-        <h3>{{ .title }}</h3>
-        <div class="skill-progress-bar">
-          {{ range .skill_list }}
-          <div class="clearfix">
-            <span class="skillbar-title">{{ .name }}</span>
-            <span class="skill-bar-percent">{{ .percentage }}</span>
-            <div class="skillbar" data-percent="{{ .percentage }}">
-              <div class="skillbar-bar"></div>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-      {{ end }}
       {{ end }}
     </div>
   </div>
 </section>
+
+<!-- Start Experience -->
+{{ with .Params.experience }}
+{{ if .enable }}
+<section class="sn-section sn-experience" id="experience">
+  <div class="container">
+    <div class="sn-heading wow fadeInUp" data-wow-duration="1.5s">
+      <div class="bar"></div>
+      <h1>{{ .title }}</h1>
+    </div>
+    <ul class="sn-timeline list-unstyled">
+      {{ range .experience_list }}
+      <li class="sn-role{{ if .points }} sn-role-major{{ end }} wow fadeInUp" data-wow-duration="1.2s">
+        <div class="sn-role-head">
+          <div>
+            <h3>{{ .name | markdownify }}</h3>
+            {{ with .company }}<div class="sn-company">{{ . | markdownify }}</div>{{ end }}
+          </div>
+          {{ with .duration }}<span class="sn-duration">{{ . }}</span>{{ end }}
+        </div>
+        {{ with .content }}<p>{{ . | markdownify }}</p>{{ end }}
+        {{ with .points }}
+        <ul class="sn-points">
+          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+        </ul>
+        {{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- End Experience -->
+
+<!-- Start Skills -->
+{{ with .Params.skills }}
+{{ if .enable }}
+<section class="sn-section sn-dark sn-skills" id="skills">
+  <div class="container">
+    <div class="sn-heading wow fadeInUp" data-wow-duration="1.5s">
+      <div class="bar"></div>
+      <h1>{{ .title }}</h1>
+    </div>
+    <div class="sn-skill-grid">
+      {{ range .groups }}
+      <div class="sn-skill-card wow fadeInUp" data-wow-duration="1.2s">
+        <h3>{{ with .icon }}<i class="{{ . }}"></i>{{ end }}{{ .name }}</h3>
+        <ul class="sn-chips list-unstyled">
+          {{ range .items }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- End Skills -->
 {{ end }}
 <!-- End About Me -->
 
-<!-- Start Services -->
-{{ with .GetPage "service" }}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section class="services {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="service">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto col-sm-10">
-        <div class="wow fadeInUp" data-wow-duration="1.5s">
-          <div class="services-heading">
-            <div class="bar"></div>
-            <h1>{{ .Title | markdownify }}</h1>
-          </div>
-          <div class="row">
-            {{ range .Params.service_list }}
-            <div class="col-lg-4 col-sm-4 col-12 services-icon">
-              <div class="service-img">
-                <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
-              </div>
-              <div class="service-label">{{ .name | markdownify }}</div>
-            </div>
-            {{ end }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-<!-- End Services -->
-
-<!-- call to action -->
-{{ with .GetPage "call-to-action" }}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}');">
-  <div class="container position-relative z-index-9">
-    <h1>{{ .Title | markdownify }}</h1>
-    {{ with .Content }}<div class="text-white content">{{ . | markdownify }}</div> {{ end }}
-    {{ with .Params.button }}
-    {{ if .enable }}
-    <a href="{{ .link | absURL}}">{{ .label }}</a>
-    {{ end }}
-    {{ end }}
-  </div>
-</section>
-{{ end }}
-<!-- end call to action -->
-
-<!-- Start Portfolio -->
+<!-- Start Projects -->
 {{ with .GetPage "portfolio"}}
 <style>{{.Params.custom_css | safeCSS}}</style>
-<section class="portfolio {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="portfolio">
-  <div class="container-fluid text-center">
-    <div class="row portfolio-holder text-left">
-      <div class="col-12 text-center">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title }}</h1>
-        <div class="filtering wow fadeInUp" data-wow-duration="1.5s">
-          <div class="btn-group btn-group-toggle portfolio-navigation" data-toggle="buttons">
-            <label class="btn btn-sm btn-primary active hvr-sweep-to-right">
-              <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
-            </label>
-            {{ $categories := slice }}
-            {{ range .Data.Pages }}
-            {{ range .Params.categories }}
-            {{ $categories = $categories | append . }}
-            {{ end }}
-            {{ end }}
-            {{ range ( $categories | uniq ) }}
-            <label class="btn btn-sm btn-primary hvr-sweep-to-right">
-              <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . | humanize }}
-            </label>
-            {{ end }}
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto">
-        <div class="row filtr-wrapper wow fadeInUp list" data-wow-duration="1.5s">
-          {{ range first 6 .Data.Pages }}
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item"
-            data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
-            <div class="item-holder">
-              <a class="image-pop" href="{{ .Params.image | absURL }}" title="{{ .Title | markdownify }}">
-                 <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}">
-              </a>
-              <div class="item-caption">
-                <h2 class="mt-2"><a class="text-white" href="{{.Permalink}}">{{ .Title | markdownify }}</a></h2>
-                {{ range .Params.categories }}
-                <p class="mb-0 text-light">{{ . | title }}</p>
-                {{ end }}
-                <div class="item-created text-light">{{ .PublishDate.Format "02 Jan, 06" }}</div>
-              </div>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-        {{ if gt (len .Data.Pages) 6}}
-        <div class="text-center wow fadeInUp mt-4" data-wow-duration="1.5s">
-          <a href="{{`portfolio` | absURL}}" class="btn btn-primary">See More</a>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-<!-- End Portfolio -->
-
-<!-- Start Testimonials -->
-{{ with .GetPage "testimonial"}}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section class="testimonials {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="testimonial">
+<section class="sn-section sn-projects {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} id="portfolio">
   <div class="container">
-    <div class="row">
-      <div class="testimonials-container col-lg-8 offset-lg-2">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title | markdownify }}</h1>
-        <div class="owl-carousel owl-theme wow fadeInUp" data-wow-duration="1.5s">
-          {{ range .Params.testimonial_slider }}
-          <div class="single-testimonial">
-            <div class="testimonial-holder">
-              <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
-              <h2>{{ .name }}</h2>
-              <span>{{ .designation | markdownify }}</span>
-              <p><i class="fa fa-quote-left"></i> {{ .content | markdownify }} <i class="fa fa-quote-right"></i></p>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-<!-- End Testimonials -->
-
-<!-- funfacts -->
-{{ with .GetPage "funfacts"}}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section class="wow fadeInUp section-sm {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s">
-  <div class="container position-relative z-index-9">
-    {{ with .Title}}
-    <div class="services-heading">
+    <div class="sn-heading wow fadeInUp" data-wow-duration="1.5s">
       <div class="bar"></div>
-      <h1>{{ . | markdownify }}</h1>
+      <h1>{{ .Title }}</h1>
+    </div>
+    {{ with .Params.featured }}
+    <div class="sn-featured">
+      {{ range . }}
+      <article class="sn-project wow fadeInUp" data-wow-duration="1.2s">
+        <ul class="sn-tech list-unstyled">
+          {{ range .tech }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        <h3>{{ .name }}</h3>
+        <p>{{ .content | markdownify }}</p>
+      </article>
+      {{ end }}
     </div>
     {{ end }}
-    <div class="fun-facts wow fadeInUp" data-wow-duration="1.5s">
-      {{ range .Params.funfacts }}
-      <div class="fun-fact-holder">
-        <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
-        <p class="fact-counter count" data-count="{{ .count }}">0</p>
-        <p>{{ .name }}</p>
+    <div class="sn-project-grid">
+      {{ range .Data.Pages }}
+      <a class="sn-project-tile wow fadeInUp" data-wow-duration="1.2s" href="{{ .Permalink }}">
+        <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}">
+        <span class="sn-tile-caption">{{ .Title | markdownify }} <i class="fas fa-arrow-right"></i></span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- End Projects -->
+
+<!-- Start Awards & Certifications -->
+{{ with .GetPage "about" }}
+{{ with .Params.awards }}
+{{ if .enable }}
+<section class="sn-section sn-tint sn-awards" id="certifications">
+  <div class="container">
+    <div class="sn-heading wow fadeInUp" data-wow-duration="1.5s">
+      <div class="bar"></div>
+      <h1>{{ .title }}</h1>
+    </div>
+    <div class="sn-award-grid">
+      {{ range .list }}
+      <div class="sn-award wow fadeInUp" data-wow-duration="1.2s">
+        <i class="{{ .icon }}"></i>
+        <div>
+          <span class="sn-issuer">{{ .issuer }}</span>
+          <h3>{{ .name }}</h3>
+        </div>
       </div>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
-<!-- end funfacts -->
+{{ end }}
+{{ end }}
+<!-- End Awards & Certifications -->
 
-<!-- Start Contact -->
-{{ with .GetPage "contact"}}
-<style>{{.Params.custom_css | safeCSS}}</style>
-<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | absURL}}');" id="contact">
-  <div class="container">
-    <div class="row">
-      <div class="contact-holder col-lg-8 offset-lg-2 col-sm-8 offset-sm-2">
-        <h1 class="wow fadeInUp" data-wow-duration="1.5s">{{ .Title | markdownify}}</h1>
-        <form method="POST" action="{{ .Params.form_action }}" data-toggle="validator">
-          <div class="form-container row wow fadeInUp" data-wow-duration="1.5s">
-            <div class="form-group col-lg-6">
-              <input class="form-control" type="text" name="username" id="username" placeholder="{{.Params.name}}"
-                required>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group col-lg-6">
-              <input class="form-control" type="email" id="email" name="email" placeholder="{{.Params.email}}" required>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group col-lg-12">
-              <textarea class="form-control" name="message" id="message" rows="12"
-                placeholder="{{.Params.message}}"></textarea>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group col-lg-12 sub-button">
-              <button class="submit form-control hvr-icon-push" type="submit" value="send"> {{.Params.submit}} </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="footer col-lg-10 offset-lg-1">
-        <hr>
-        <ul class="footer-icons list-inline">
-          {{ range site.Params.social }}
-          <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
-          {{ end }}
-        </ul>
-        <div class="to-top">
-          <a href="#home"><i class="fa fa-chevron-up"></i></a>
-        </div>
-        <div class="credit content">
-          {{ site.Params.copyright | markdownify }}
-        </div>
-      </div>
-    </div>
+<!-- Start Contact & Blog -->
+{{ with .GetPage "blog" }}
+{{ with .Params.coming_soon }}
+<section class="sn-section sn-dark sn-soon" id="contact">
+  <div class="container text-center wow fadeInUp" data-wow-duration="1.5s">
+    <span class="sn-soon-badge">{{ .heading }}</span>
+    <h1>Contact &amp; Blog</h1>
+    <p>{{ .text }}</p>
   </div>
 </section>
 {{ end }}
-<!-- End Contact -->
+{{ end }}
+<!-- End Contact & Blog -->
+
+{{- partialCached "footer.html" . -}}
 
 <a href="#home" class="scroll-up hvr-icon-up"></a>
 
